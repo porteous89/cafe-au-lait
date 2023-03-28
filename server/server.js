@@ -4,6 +4,7 @@ const path = require('path');
 const { typeDefs, resolvers } = require('./schema');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
+const paymentRoutes = require('./routes/payments');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -13,6 +14,7 @@ const server = new ApolloServer({
     context: authMiddleware,
 });
 
+app.use("/api/payments", paymentRoutes);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

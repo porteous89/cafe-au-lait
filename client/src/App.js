@@ -23,3 +23,16 @@ function App() {
 }
 
 export default App;
+
+// Stripe API function
+// function App() {
+//   return (
+//     <div className="App">
+//       <Elements stripe={stripePromise}>
+//         <PaymentForm amount={5000} />
+//       </Elements>
+//     </div>
+//   );
+// }
+
+// export default App
