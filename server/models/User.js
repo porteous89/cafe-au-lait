@@ -26,7 +26,7 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
-    avatr: {
+    avatar: {
         type: String,
         default: 'https://www.gravatar.com',
         required: false
