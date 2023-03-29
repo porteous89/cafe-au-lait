@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || require('../config/stripe').STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || require('../../config/stripe').STRIPE_SECRET_KEY);
 
 router.post('/charge', async (req, res) => {
   const { amount, token } = req.body;
