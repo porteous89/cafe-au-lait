@@ -10,8 +10,8 @@ const orderSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Item'
-        }
-    ]
+        },
+    ],
 });
 
 const Order = mongoose.model('Order', orderSchema);

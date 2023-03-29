@@ -1,59 +1,62 @@
-const db = require('../config/connection');
-const { User, Drink, Category } = require('../models');
+
+const db = require('./connection');
+const { User, Item, Category, Order } = require('../models');
 
 db.once('open', async () => {
-    await Category.deleteMany({});
+    await Category.deleteMany();
 
     const categories = await Category.insertMany([
-        { name: 'Cold Drinks' },
         { name: 'Hot Drinks' },
-
+        { name: 'Cold Drinks' },
+        { name: 'Food' }
     ]);
 
-    console.log('categories seeded');
+    console.log('categories seeded!');
 
-    await Drink.deleteMany({});
+    await Item.deleteMany();
 
-const drinks = await Drink.insertMany([
+    const items = await Item.insertMany([
     {
         name: 'Alpacchino',
         description: 'An espresso-based coffee with whole milk, prepared with steamed milk foam and topped with cinnamon-chocolate powder.',
-        image:'',
-        category: categories[1]._id,
-        price: 5.99,
-        quantity: 1
+       image: 'cappuccino.jpeg',
+            price: 4.99,
+            quantity: 300,
+        quantity: 300
     },
     {
         name: 'Love You A-Latte',
         description: 'A mix of espresso, steamed milk and a layer of milk foam on top. Served with a mini biscotti.',
-        image:'',
+        image: 'chailatte.jpg',
+            price: 4.50,
+            quantity: 300,
         category: categories[1]._id,
-        price: 4.99,
-        quantity: 1
     },
     {
         name: 'Cup-tain Americano',
         description: 'A custom house-blend espresso brewed with added hot water, giving it a similar strength to, but different flavor from traditionally brewed coffee.',
-        image:'',
+        image: 'freshcoffee.jpg',
+            price: 3.99,
+            quantity: 300,
         category: categories[1]._id,
-        price: 3.99,
-        quantity: 1
     },
     {
         name: "I've Met My Matcha!",
         description: 'A mix of matcha green tea from Japan, steamed milk and a layer of milk foam on top.',
-        image:'',
-        category: categories[1]._id,
-        price: 4.99,
-        quantity: 1
+         image: 'tea.jpg',
+          category: categories[1]._id
+            price: 2.99,
+            quantity: 300,
+            
     },
     {
         name: 'Espresso Yourself',
         description: 'A custom house-blend espresso, brewed with boiling water under pressure through finely ground coffee beans.',
-        image:'',
+        image: 'espresso.jpg',
+            price: 4.99,
+            quantity: 300,
         category: categories[1]._id,
-        price: 2.99,
-        quantity: 1
+       
     },
     {
         name: 'Livin La Vida Mocha',
@@ -61,7 +64,7 @@ const drinks = await Drink.insertMany([
         image:'',
         category: categories[1]._id,
         price: 5.99,
-        quantity: 1
+        quantity: 300
     },
     {
         name: 'Fifty Shades of Grey',
@@ -69,7 +72,7 @@ const drinks = await Drink.insertMany([
         image:'',
         category: categories[1]._id,
         price: 4.99,
-        quantity: 1
+        quantity: 300
     },
     {
         name: 'Deja Brew',
@@ -77,7 +80,7 @@ const drinks = await Drink.insertMany([
         image:'',
         category: categories[0]._id,
         price: 4.99,
-        quantity: 1
+        quantity: 300
     },
     {
         name: 'Ice Quali-Tea',
@@ -85,7 +88,7 @@ const drinks = await Drink.insertMany([
         image:'',
         category: categories[0]._id,
         price: 3.99,
-        quantity: 1
+        quantity: 300
     },
     {
         name: "Sorry, I'm Latte",
@@ -93,7 +96,7 @@ const drinks = await Drink.insertMany([
         image:'',
         category: categories[0]._id,
         price: 5.99,
-        quantity: 1
+        quantity: 300
     },
     {
         name: 'Snow White',
@@ -101,7 +104,7 @@ const drinks = await Drink.insertMany([
         image:'',
         category: categories[0]._id,
         price: 5.99,
-        quantity: 1
+        quantity: 300
     },
     {
         name: "Don't Worry, Be Frappe",
@@ -109,7 +112,7 @@ const drinks = await Drink.insertMany([
         image:'',
         category: categories[0]._id,
         price: 4.99,
-        quantity: 1
+        quantity: 300
     },
     {
         name: 'Alice in Brewland',
@@ -117,7 +120,7 @@ const drinks = await Drink.insertMany([
         image:'',
         category: categories[0]._id,
         price: 4.99,
-        quantity: 1
+        quantity: 300
     },
 ]);
 
@@ -133,7 +136,7 @@ await User.create({
     password: 'password12345',
     orders: [
         {
-            products: [drinks[0]._id, drinks[1]._id]
+            products: [items[0]._id, items[1]._id]
         }
     ]
 });
