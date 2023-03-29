@@ -31,7 +31,13 @@ const userSchema = new Schema({
         default: 'https://www.gravatar.com',
         required: false
     },
-    orders: [Order.schema]
+    orders: [Order.schema],
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 });
 
 userSchema.pre('save', async function(next) {

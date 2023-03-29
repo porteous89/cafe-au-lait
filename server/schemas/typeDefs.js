@@ -6,15 +6,6 @@ type Category {
     name: String
 }
 
-type Drinks {
-    _id: ID
-    name: String
-    description: String
-    image: String
-    category: Category
-    price: Float
-}
-
 type Item {
     _id: ID
     name: String
@@ -53,22 +44,22 @@ type Auth {
 type Query {
     user: User
     categories: [Category]
-    drinks: [Drinks]
     items: [Item]
     item(category: ID!): Item
-    drink(category: ID!): Drinks
     order(_id: ID!): Order
-    orders: [Order]
-    checkout(items: [ID]!, drinks: [ID]!): Checkout
+    checkout(items: [ID]!): Checkout
+    allUsers: [User]
 }
 
 type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     updateUser(firstName: String, lastName: String, email: String, password: String, avatar: String): User
     login(email: String!, password: String!): Auth
-    addOrder(items: [ID]!, drinks: [ID]!): Order
-    updateOrder(_id: ID!, items: [ID]!, drinks: [ID]!): Order
+    addOrder(items: [ID]!): Order
+    updateItem(_id: ID!, quantity: Int!): [Item]
     removeOrder(_id: ID!): Order
+    addFriend(friendId: ID!): User
+    removeFriend(friendId: ID!): User
 }
 
 `;
