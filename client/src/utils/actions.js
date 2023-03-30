@@ -18,6 +18,14 @@ export const selectTable = (tableId) => {
   };
 };
 
+export const JOIN_TABLE = 'JOIN_TABLE';
+export const joinTable = (tableId) => {
+  return {
+    type: JOIN_TABLE,
+    payload: tableId,
+  };
+};
+
 export const LEAVE_TABLE = 'LEAVE_TABLE';
 export const leaveTable = () => {
   return {
@@ -30,5 +38,7 @@ export const sendMessage = (message) => {
   return {
     type: SEND_MESSAGE,
     payload: message,
+    tableId: message.tableId,
+    sender: message.sender,
   };
 };

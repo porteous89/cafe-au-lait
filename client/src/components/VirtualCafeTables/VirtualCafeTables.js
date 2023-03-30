@@ -1,56 +1,76 @@
-import { useStoreContext } from '../../utils/GlobalState';
-import { selectTable } from '../../utils/actions';
+ import { useStoreContext } from '../../utils/GlobalState';
+ import { selectTable } from '../../utils/actions';
 import { Card as MuiCard, CardContent, Typography, Button } from '@material-ui/core';
 import styled from '@emotion/styled';
+import React from 'react';
+import VirtualCafeTable from './VirtualCafeTable';
+import './VirtualCafeTables.css';
 
 const Card = styled(MuiCard)`
   margin: 1rem;
 `;
 
 const VirtualCafeTables = () => {
-    const [state, dispatch] = useStoreContext();
-  
-    const tablesData = [
+    const tables = [
       { id: 1, name: 'Table 1', capacity: 4 },
       { id: 2, name: 'Table 2', capacity: 6 },
       { id: 3, name: 'Table 3', capacity: 8 },
       { id: 4, name: 'Table 4', capacity: 10 },
     ];
+  return (
+    <div className="virtual-cafe-tables-container">
+      {tables.map((table) => (
+        <VirtualCafeTable key={table.id} table={table} />
+      ))}
+    </div>
+  );
+};
+
+export default VirtualCafeTables;
+
+// const VirtualCafeTables = () => {
+//     const [state, dispatch] = useStoreContext();
   
-    const joinTable = (tableId) => {
-    dispatch(selectTable(tableId));
-    };
+//     const tablesData = [
+//       { id: 1, name: 'Table 1', capacity: 4 },
+//       { id: 2, name: 'Table 2', capacity: 6 },
+//       { id: 3, name: 'Table 3', capacity: 8 },
+//       { id: 4, name: 'Table 4', capacity: 10 },
+//     ];
   
-    return (
-      <div>
-        <h2>Virtual Cafe Tables</h2>
-        <div>
-          {tablesData.map((table) => (
-            <Card key={table.id}>
-              <CardContent>
-                <Typography variant="h5" component="div">
-                  {table.name}
-                </Typography>
-                <Typography
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Seating capacity: {table.capacity}
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => joinTable(table.id)}
-                  disabled={state.selectedTable === table.id}
-                >
-                  {state.selectedTable === table.id ? 'Joined' : 'Join'}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    );
-  };
+//     const joinTable = (tableId) => {
+//     dispatch(selectTable(tableId));
+//     };
   
-  export default VirtualCafeTables;
+//     return (
+//       <div>
+//         <h2>Virtual Cafe Tables</h2>
+//         <div>
+//           {tablesData.map((table) => (
+//             <Card key={table.id}>
+//               <CardContent>
+//                 <Typography variant="h5" component="div">
+//                   {table.name}
+//                 </Typography>
+//                 <Typography
+//                   color="text.secondary"
+//                   gutterBottom
+//                 >
+//                   Seating capacity: {table.capacity}
+//                 </Typography>
+//                 <Button
+//                   variant="contained"
+//                   color="primary"
+//                   onClick={() => joinTable(table.id)}
+//                   disabled={state.selectedTable === table.id}
+//                 >
+//                   {state.selectedTable === table.id ? 'Joined' : 'Join'}
+//                 </Button>
+//               </CardContent>
+//             </Card>
+//           ))}
+//         </div>
+//       </div>
+//     );
+//   };
+  
