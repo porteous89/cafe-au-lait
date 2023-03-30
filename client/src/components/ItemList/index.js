@@ -7,7 +7,7 @@ import { QUERY_ITEMS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
 
-function ProductList() {
+function ItemList() {
   const [state, dispatch] = useStoreContext();
 
   const { currentCategory } = state;
@@ -20,8 +20,8 @@ function ProductList() {
         type: UPDATE_ITEMS,
         items: data.items,
       });
-      data.items.forEach((items) => {
-        idbPromise('items', 'put', items);
+      data.items.forEach((item) => {
+        idbPromise('items', 'put', item);
       });
     } else if (!loading) {
       idbPromise('items', 'get').then((items) => {
@@ -33,7 +33,7 @@ function ProductList() {
     }
   }, [data, loading, dispatch]);
 
-  function filterItems() {
+  function filterProducts() {
     if (!currentCategory) {
       return state.items;
     }
@@ -48,12 +48,13 @@ function ProductList() {
       <h2>Our Products:</h2>
       {state.items.length ? (
         <div className="flex-row">
-          {filterItems().map((item) => (
+          {filterProducts().map((item) => (
             <ProductItem
               key={item._id}
-              _id={item._id}
+              
               image={item.image}
               name={item.name}
+              description={item.description}
               price={item.price}
               quantity={item.quantity}
             />
@@ -67,4 +68,4 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+export default ItemList;
