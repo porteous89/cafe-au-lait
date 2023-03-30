@@ -52,6 +52,7 @@ function CategoryMenu() {
           }}
         >
           {item.name}
+          {item.description}
         </button>
       ))}
     </div>
