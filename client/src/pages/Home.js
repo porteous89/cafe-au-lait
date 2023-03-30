@@ -2,7 +2,7 @@ import React from 'react';
 import { Jumbotron, Button, Container} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import '../assets/css/home.css';
+import './Home.css';
 
 const Home = ({name}) => {
     return (

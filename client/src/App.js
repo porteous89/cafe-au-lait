@@ -1,17 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
 import "./assets/css/styles.css";
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Item from './components/Item';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import Navbar from './components/Navbar';
+// import Footer from './components/Footer';
+import CafeTables from './pages/CafeTables';
 
 function App() {
   return (
-    <div>
-      <Header name="Cafe Du Lait"/>
-      <Menu name="Cold Drinks" menu={Item}/>
-      <Menu name="Hot Drinks" menu={Item}/>
-    </div>
+    <div className="App">
+    <Router>
+      {/* <Navbar /> */}
+      <Routes>
+        <Route path="/" element={<Header/>} />
+        <Route path="/menu" element={<Menu/>} />
+        <Route path = "/item" element={<Item/>} />
+        <Route path = "/cafe-tables" element={<CafeTables/>} />
+      </Routes>
+    </Router>
+  </div>
   );
 };
 
