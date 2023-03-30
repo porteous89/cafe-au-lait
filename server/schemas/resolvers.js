@@ -26,12 +26,24 @@ const resolvers = {
         categories: async () => {
             return await Category.find();
         },
-        items: async (parent, Category, context) => {
-            const params = Category ? { category: Category } : {};
-            return await Item.find(params).populate('category');
+        items: async () => {
+            return await Item.find().populate('category');
+        
         },
-        item: async (parent, { _id }) => {
-            return await Item.findById(_id).populate('category');
+        itemsCat: async (parent, { category, name }) => {
+            const params = {};
+
+            if (category) {
+                params.category = category;
+            }
+
+            if (name) {
+                params.name = {
+                    $regex: name
+                };
+            }
+
+            return await Item.find(params).populate('category');
         },
         order: async (parent, {_id}, context) => {
             if (context.user) {
