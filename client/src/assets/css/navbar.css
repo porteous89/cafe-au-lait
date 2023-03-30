@@ -1,5 +1,5 @@
 .nav-bar {
-    background-color: #0a4486c5;
+    background-color: rgba(7, 45, 34, 0.797);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     font-size: 16px;
     }
@@ -24,6 +24,7 @@
     
     .nav-link {
     color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
     }
     
     .nav-link.active,
@@ -42,8 +43,8 @@
     }
     
     .btn-outline-dark:hover {
-    color: #ffffff;
-    background-color: #ffffff;
+    color: black;
+    background-color: rgba(94, 42, 4, 0.614);
     border-color: #ffffff;
     }
     
@@ -57,5 +58,9 @@
     padding: 0.25rem 0.5rem;
     border-radius: 10px;
     }
+
+.container {
+    color: rgba(94, 42, 4, 0.614);
+}
 
     
