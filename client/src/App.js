@@ -3,13 +3,14 @@ import './App.css';
 import "./assets/css/styles.css";
 import Header from './components/Header';
 import Menu from './components/Menu';
+import Item from './components/Item';
 
 function App() {
   return (
     <div>
-      <Header/>
-      <Menu name="Cold Drinks"/>
-      <Menu name="Hot Drinks"/>
+      <Header name="Cafe Du Lait"/>
+      <Menu name="Cold Drinks" menu={Item}/>
+      <Menu name="Hot Drinks" menu={Item}/>
     </div>
   );
 };

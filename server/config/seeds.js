@@ -16,13 +16,13 @@ db.once('open', async () => {
     await Item.deleteMany();
 
     const items = await Item.insertMany([
-    {
-        name: 'Alpacchino',
-        description: 'An espresso-based coffee with whole milk, prepared with steamed milk foam and topped with cinnamon-chocolate powder.',
-       image: 'cappuccino.jpeg',
+        {
+            name: 'Alpacchino',
+            description: 'An espresso-based coffee with whole milk, prepared with steamed milk foam and topped with cinnamon-chocolate powder.',
+            image: 'cappuccino.jpeg',
             price: 4.99,
             quantity: 300,
-        category: categories[0]._id,
+            category: categories[0]._id,
     },
     {
         name: 'Love You A-Latte',
@@ -44,18 +44,18 @@ db.once('open', async () => {
         name: "I've Met My Matcha!",
         description: 'A mix of matcha green tea from Japan, steamed milk and a layer of milk foam on top.',
          image: 'tea.jpg',
-          category: categories[0]._id,
-            price: 2.99,
-            quantity: 300,
-            
-    },
-    {
-        name: 'Espresso Yourself',
-        description: 'A custom house-blend espresso, brewed with boiling water under pressure through finely ground coffee beans.',
-        image: 'espresso.jpg',
+         price: 2.99,
+         quantity: 300,
+         category: categories[0]._id,
+
+        },
+        {
+            name: 'Espresso Yourself',
+            description: 'A custom house-blend espresso, brewed with boiling water under pressure through finely ground coffee beans.',
+            image: 'espresso.jpg',
             price: 4.99,
             quantity: 300,
-        category: categories[0]._id,
+            category: categories[0]._id,
        
     },
     {
@@ -193,27 +193,25 @@ console.log('items seeded!');
 await User.deleteMany({});
 
 
-await User.create({
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john@abc.com',
-    password: 'password12345',
-    orders: [
-        {
-            products: [items[0]._id, items[1]._id]
-        }
-    ]
-});
+    await User.create({
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@abc.com',
+        password: 'password12345',
+        orders: [
+            {
+                products: [items[0]._id, items[1]._id]
+            }
+        ]
+    });
 
-await User.create({
-    firstName: 'Jane',
-    lastName: 'Doe',
-    email: 'jane@abc.com',
-    password: 'password12345',
-});
+    await User.create({
+        firstName: 'Jane',
+        lastName: 'Doe',
+        email: 'jane@abc.com',
+        password: 'password12345',
+    });
 
-console.log('users seeded');
-
-process.exit();
+    process.exit();
 
 });

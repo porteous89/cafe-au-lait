@@ -1,0 +1,61 @@
+.nav-bar {
+    background-color: #0a4486c5;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    }
+
+    .navbar {
+        padding-top: .75rem;
+    padding-bottom: .75rem;
+    }
+    
+    .navbar-brand {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 24px;
+    }
+    a.navbar-brand {
+        color: #ffffff
+    }
+    
+    .navbar-toggler {
+    border: none;
+    }
+    
+    .nav-link {
+    color: #ffffff;
+    }
+    
+    .nav-link.active,
+    .nav-link:hover {
+    color: #de862f;
+    }
+    
+    .navbar-nav {
+    margin-left: auto;
+    }
+    
+    /* Cart button style */
+    .btn-outline-dark {
+    color: #ffffff;
+    border-color: #343a40;
+    }
+    
+    .btn-outline-dark:hover {
+    color: #ffffff;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    }
+    
+    .badge {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    font-size: 0.8rem;
+    background-color: #de862f;
+    color: #ffffff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    }
+
+    

@@ -1,11 +1,11 @@
-import "../assets/css/nav-bar.css"
+import "../assets/css/navbar.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Header = () => {
+const Header = ({name, cart}) => {
     return (
         <nav className="navbar navbar-light navbar-expand-md sticky-top nav-bar">
             <div className="container">
-                <a className="navbar-brand" href="#"></a>
+                <a className="navbar-brand" href="#">{name}</a>
                 <button data-bs-toggle="collapse" data-bs-target="#navcol-1" className="navbar-toggler">
                     <span className="visually-hidden">Toggle navigation</span>
                     <span className="navbar-toggle-icon"></span>
@@ -27,6 +27,13 @@ const Header = () => {
                         <li className="nav-item">
                             <a className="nav-link" href="#">Tables</a>
                         </li>
+                        {/* <li className="nav-item">
+                        <button onClick={} className="btn btn-outline-dark d-flex align-items-end" type="button">
+                            <i className="fas fa-shopping-cart"/>
+                            <span className="badge bg-danger rounded-pill">{cart}</span>
+                            </i>
+                        </button>
+                        </li> */}
                     </ul>
                 </div>
             </div>
