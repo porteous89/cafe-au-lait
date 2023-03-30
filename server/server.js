@@ -13,7 +13,7 @@ const server = new ApolloServer({
     resolvers,
     context: authMiddleware,
 });
-
+app.use('/images', express.static(path.join(__dirname, '../client/images')));
 app.use("./routes/api/payments", paymentRoutes);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
