@@ -12,6 +12,7 @@ const Home = ({name}) => {
     return (
         <div className='home'>
         <Container fluid className='home'>
+            {/* <Jumbotron> */}
            <CategoryList />
               <ItemList />
 
@@ -22,7 +23,7 @@ const Home = ({name}) => {
                 <p>
                     <Button variant="primary"><a href='productlist'>Order Now</a></Button>
                 </p>
-           
+           {/* </Jumbotron> */}
         </Container>
         </div>
     );
