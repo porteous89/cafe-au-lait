@@ -9,7 +9,8 @@ import {
   UPDATE_CURRENT_CATEGORY,
   CLEAR_CART,
   TOGGLE_CART,
-} from './actions';
+  SELECT_TABLE
+} from '../actions';
 
 // The reducer is a function that accepts the current state and an action. It returns a new state based on that action.
 export const reducer = (state, action) => {
@@ -85,6 +86,13 @@ export const reducer = (state, action) => {
         ...state,
         currentCategory: action.currentCategory,
       };
+
+      case SELECT_TABLE:
+        return {
+          ...state,
+          selectedTable: action.tableId,
+        };
+    
 
     // Return the state as is in the event that the `action.type` passed to our reducer was not accounted for by the developers
     // This saves us from a crash.
