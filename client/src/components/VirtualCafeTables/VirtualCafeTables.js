@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import {
-  Card,
-  CardContent,
-  Typography,
-  Button,
-} from '@material-ui/core';
+import { useStoreContext } from '../../utils/GlobalState';
+import { selectTable } from '../../utils/actions';
+import { Card as MuiCard, CardContent, Typography, Button } from '@material-ui/core';
+import styled from '@emotion/styled';
+
+const Card = styled(MuiCard)`
+  margin: 1rem;
+`;
 
 const VirtualCafeTables = () => {
-    const [selectedTable, setSelectedTable] = useState(null);
+    const [state, dispatch] = useStoreContext();
   
     const tablesData = [
       { id: 1, name: 'Table 1', capacity: 4 },
@@ -17,7 +18,7 @@ const VirtualCafeTables = () => {
     ];
   
     const joinTable = (tableId) => {
-      setSelectedTable(tableId);
+    dispatch(selectTable(tableId));
     };
   
     return (
@@ -40,9 +41,9 @@ const VirtualCafeTables = () => {
                   variant="contained"
                   color="primary"
                   onClick={() => joinTable(table.id)}
-                  disabled={selectedTable === table.id}
+                  disabled={state.selectedTable === table.id}
                 >
-                  {selectedTable === table.id ? 'Joined' : 'Join'}
+                  {state.selectedTable === table.id ? 'Joined' : 'Join'}
                 </Button>
               </CardContent>
             </Card>
