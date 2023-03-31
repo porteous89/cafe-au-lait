@@ -1,33 +1,33 @@
 import React, { useEffect } from 'react';
 import ProductItem from '../ProductItem';
 import { useStoreContext } from '../../utils/GlobalState';
-import { UPDATE_ITEMS } from '../../utils/actions';
+import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { useQuery } from '@apollo/client';
-import { QUERY_ITEMS } from '../../utils/queries';
+import { QUERY_PRODUCTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
 
-function ItemList() {
+function ProductList() {
   const [state, dispatch] = useStoreContext();
 
   const { currentCategory } = state;
 
-  const { loading, data } = useQuery(QUERY_ITEMS);
+  const { loading, data } = useQuery(QUERY_PRODUCTS);
 
   useEffect(() => {
     if (data) {
       dispatch({
-        type: UPDATE_ITEMS,
-        items: data.items,
+        type: UPDATE_PRODUCTS,
+        products: data.products,
       });
-      data.items.forEach((item) => {
-        idbPromise('items', 'put', item);
+      data.products.forEach((product) => {
+        idbPromise('products', 'put', product);
       });
     } else if (!loading) {
-      idbPromise('items', 'get').then((items) => {
+      idbPromise('products', 'get').then((products) => {
         dispatch({
-          type: UPDATE_ITEMS,
-          items: items,
+          type: UPDATE_PRODUCTS,
+          products: products,
         });
       });
     }
@@ -35,28 +35,28 @@ function ItemList() {
 
   function filterProducts() {
     if (!currentCategory) {
-      return state.items;
+      return state.products;
     }
 
-    return state.items.filter(
-      (item) => item.category._id === currentCategory
+    return state.products.filter(
+      (product) => product.category._id === currentCategory
     );
   }
 
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
-      {state.items.length ? (
+      {state.products.length ? (
         <div className="flex-row">
-          {filterProducts().map((item) => (
+          {filterProducts().map((product) => (
             <ProductItem
-              key={item._id}
-              
-              image={item.image}
-              name={item.name}
-              description={item.description}
-              price={item.price}
-              quantity={item.quantity}
+              key={product._id}
+              _id={product._id}
+              image={product.image}
+              name={product.name}
+              description={product.description}
+              price={product.price}
+              quantity={product.quantity}
             />
           ))}
         </div>
@@ -68,4 +68,4 @@ function ItemList() {
   );
 }
 
-export default ItemList;
+export default ProductList;

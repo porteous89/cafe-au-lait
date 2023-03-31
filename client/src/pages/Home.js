@@ -3,7 +3,7 @@ import { Jumbotron, Button, Container} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cart from '../components/Cart';
 import CategoryList from '../components/CategoryMenu';
-import ItemList from '../components/ItemList';
+import ProductList from '../components/ItemList';
 
 
 import './home.css';
@@ -14,7 +14,8 @@ const Home = ({name}) => {
         <Container fluid className='home'>
             {/* <Jumbotron> */}
            <CategoryList />
-              <ItemList />
+              <ProductList />
+              
 
                 <h1>Welcome to {name}</h1>
                 <p>
