@@ -42,7 +42,6 @@ function ProductItem(item) {
   }
 
   return (
-    
     <section className="features-boxed">
             <div className="container">
                 <div className="intro">

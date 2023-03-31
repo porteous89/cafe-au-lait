@@ -25,15 +25,18 @@
     .nav-link {
     color: #ffffff;
     font-family: 'Open Sans', sans-serif;
+    background-color: rgba(7, 45, 34, 0.797);
     }
     
     .nav-link.active,
     .nav-link:hover {
-    color: #de862f;
+    color: #ffffff;
+    box-shadow: inset 0px 0px 8px var(--heliotrope), 0 0 15px var(--heliotrope);
     }
     
     .navbar-nav {
     margin-left: auto;
+    background-color:rgba(0, 0, 0, 0.1);
     }
     
     /* Cart button style */

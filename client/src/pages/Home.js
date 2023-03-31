@@ -16,10 +16,7 @@ const Home = ({name}) => {
             <Card>
            <CategoryList />
            <ProductList />
-                
-              
-              
-
+                <div>
                 <h1>Welcome to {name}</h1>
                 <p>
                    A small French cafe in the heart of downtown. 
@@ -27,6 +24,7 @@ const Home = ({name}) => {
                 <p>
                     <Button variant="primary"><a href='itemlist'>Order Now</a></Button>
                 </p>
+                </div>
            </Card>
         </Container>
         </div>
