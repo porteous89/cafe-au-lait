@@ -28,7 +28,7 @@ const Nav = ({name, cart}) => {
               <a className="nav-link active" href="/">Menu</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">Profile</a>
+              <a className="nav-link" href="/profile">Profile</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/">Cart</a>
