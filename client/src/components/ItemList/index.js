@@ -33,7 +33,7 @@ function ProductList() {
     }
   }, [data, loading, dispatch]);
 
-  function filterItems() {
+  function filterProducts() {
     if (!currentCategory) {
       return state.products;
     }

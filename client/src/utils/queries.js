@@ -69,3 +69,37 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_ALL_TABLES = gql`
+ query allTables {
+  allTables {
+      _id
+      name
+      description
+      capacity
+      attendants {
+        _id
+        firstName
+        lastName
+        avatar
+      }
+    }
+  }
+`;
+
+export const QUERY_SINGLE_TABLE = gql`
+  query table($tableId: ID!) {
+    table(_id: $tableId) {
+      _id
+      name
+      description
+      capacity
+      attendants {
+        _id
+        firstName
+        lastName
+        avatar
+      }
+    }
+  }
+`;

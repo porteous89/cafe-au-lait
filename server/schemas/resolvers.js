@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Order, Product, Category } = require('../models');
+const { User, Order, Product, Category, VirtualTable } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('k_test_51MqfRXLKxBhs1x2ohImp5tfmxKnV9g1D9aptSYH23aU8snf1VIvrhBZ2XcXNfHLhrVqngQFe760FsHAk3P0a9cap00xNKg5A0S');
 
@@ -86,6 +86,12 @@ const resolvers = {
             });
 
             return { session: session.id };
+        },
+        allTables: async (parents, args) => {
+            return await VirtualTable.find().populate('attendants');
+        },
+        table: async (parents, { _id }) => {
+            return await VirtualTable.findById(_id).populate('attendants');
         }
     },
     Mutation: {
@@ -150,6 +156,28 @@ const resolvers = {
                     { new: true }
                 ).populate('friends');
                 return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        joinTable: async (parent, { tableId }, context) => {
+            if (context.user) {
+                const updatedTable = await VirtualTable.findByIdAndUpdate(
+                    { _id: tableId },
+                    { $addToSet: { attendants: context.user._id } },
+                    { new: true }
+                ).populate('attendants');
+                return updatedTable;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        leaveTable: async (parent, { tableId }, context) => {
+            if (context.user) {
+                const updatedTable = await VirtualTable.findByIdAndUpdate(
+                    { _id: tableId },
+                    { $pull: { attendants: context.user._id } },
+                    { new: true }
+                ).populate('attendants');
+                return updatedTable;
             }
             throw new AuthenticationError('You need to be logged in!');
         }

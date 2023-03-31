@@ -49,3 +49,36 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const JOIN_TABLE = gql`
+  mutation joinTable($tableId: ID!) {
+    joinTable(tableId: $tableId) {
+      _id
+      name
+      description
+      capacity
+      attendants {
+        _id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
+export const LEAVE_TABLE = gql`
+  mutation leaveTable($tableId: ID!) {
+    leaveTable(tableId: $tableId) {
+      _id
+      name
+      description
+      capacity
+      attendants {
+        _id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+

@@ -5,26 +5,28 @@ import styled from '@emotion/styled';
 import React from 'react';
 import VirtualCafeTable from './VirtualCafeTable';
 import './VirtualCafeTables.css';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_TABLES } from '../../utils/queries';
+import TableActions from './TableActions';
+
 
 const Card = styled(MuiCard)`
   margin: 1rem;
 `;
 
 const VirtualCafeTables = () => {
-    const tables = [
-      { id: 1, name: 'Table 1', capacity: 4 },
-      { id: 2, name: 'Table 2', capacity: 6 },
-      { id: 3, name: 'Table 3', capacity: 8 },
-      { id: 4, name: 'Table 4', capacity: 10 },
-    ];
-  return (
-    <div className="virtual-cafe-tables-container">
-      {tables.map((table) => (
-        <VirtualCafeTable key={table.id} table={table} />
-      ))}
-    </div>
-  );
-};
+  const { loading, data } = useQuery(QUERY_ALL_TABLES);
+  const tables = data?.allTables || [];
+
+
+    return (
+      <div className="virtual-cafe-tables-container">
+        {tables.map((table, index) => (
+          <VirtualCafeTable key={table.id || index} table={table} />
+        ))}
+      </div>
+    );
+  };
 
 export default VirtualCafeTables;
 

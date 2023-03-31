@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
+import CafeTables from './pages/CafeTables';
 
 import Nav from './components/Nav';
 
@@ -47,10 +48,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/menu" element={<Menu />} />
+          <Route exact path="/cafe-tables" element={<CafeTables />} />
         </Routes>
-      {/* <Header name="Cafe Du Lait"/>
+      <Header name="Cafe Du Lait"/>
       <Menu name="Cold Drinks" menu={Item}/>
-      <Menu name="Hot Drinks" menu={Item}/> */}
+      <Menu name="Hot Drinks" menu={Item}/>
       </StoreProvider>
    
     </div>
