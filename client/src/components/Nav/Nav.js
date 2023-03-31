@@ -80,5 +80,3 @@ const Nav = ({name, cart}) => {
     </div>
   )
 };
-
-export default Nav;
