@@ -1,21 +1,20 @@
 import './App.css';
 import "./assets/css/styles.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { StoreProvider } from './utils/GlobalState';
 
-import Nav from './components/Nav/Nav.js';
-import Menu from './components/Menu';
-// import Item from './components/Item';
+import Nav from './components/Nav/index.js';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
 import CafeTables from './pages/CafeTables';
-
-// import Nav from './components/Nav';
+import ProductItem from './components/ProductItem/index.js';
+import CategoryMenu from './components/CategoryMenu/index.js';
+import ItemList from './components/ItemList/index.js';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,10 +44,14 @@ function App() {
       <StoreProvider>
         <Nav name="Cafe Du Lait"/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/menu" element={<Menu />} />
+          <Route path="/menu" element={<>
+            <CategoryMenu />
+            {/* <ProductItem /> */}
+            <ItemList />
+          </>} />
           <Route exact path="/cafe-tables" element={<CafeTables />} />
         </Routes>
       </StoreProvider>

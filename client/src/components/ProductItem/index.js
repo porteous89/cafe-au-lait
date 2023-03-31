@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers"
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import CustomizeCard from "../CustomizeCard";
+import Button from 'react-bootstrap/Button';
 
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
+  const [showCustomiseForm, setShowCustomiseForm] = useState(false);
+
+  const toggleCustomiseForm = () => setShowCustomiseForm(!showCustomiseForm);
 
   const {
     image,
@@ -15,7 +20,7 @@ function ProductItem(item) {
     description,
     price,
     quantity,
-    
+
   } = item;
 
   const { cart } = state
@@ -43,27 +48,31 @@ function ProductItem(item) {
 
   return (
     <section className="features-boxed">
-            <div className="container">
-                <div className="intro">
-                    <h2 className="text-center">{name} </h2>
-                    {/* <p className="text-center">{desc} </p> */}
-                </div>
-                <div className="row justify-content-center features"></div>
-                <div className="card px-1 py-1">
-      <Link to={`/products/${_id}`}>
-      </Link>
-      <img
-           src={`/images/${image}`}
-           alt={name} 
-        />
-        <p>{description}</p>
-      <div>
-        <div>{quantity} {pluralize("item", quantity)} in stock</div>
-        <span>${price}</span> 
+      <div className="container">
+        <div className="intro">
+          <h2 className="text-center">{name} </h2>
+          {/* <p className="text-center">{desc} </p> */}
+        </div>
+        <div className="row justify-content-center features"></div>
+        <div className="card px-1 py-1">
+          <Link to={`/products/${_id}`}>
+          </Link>
+          <img
+            src={`/images/${image}`}
+            alt={name}
+          />
+          <p>{description}</p>
+          <div>
+            <div>{quantity} {pluralize("item", quantity)} in stock</div>
+            <span>${price}</span>
+          </div>
+          <Button onClick={toggleCustomiseForm} borderRadius="8px" py={3} px={2} mt={4} lineHeight={1} size="md">
+            Customize
+          </Button>
+          {showCustomiseForm && <CustomizeCard isOpen={showCustomiseForm} item={item} />}
+          {!showCustomiseForm && <button onClick={addToCart}>Add to cart</button>}
+        </div>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
-    </div>
-    </div>
     </section>
 
   );
