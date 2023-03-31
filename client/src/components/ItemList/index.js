@@ -33,7 +33,7 @@ function ItemList() {
     }
   }, [data, loading, dispatch]);
 
-  function filterProducts() {
+  function filterItems() {
     if (!currentCategory) {
       return state.items;
     }
@@ -45,10 +45,9 @@ function ItemList() {
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
       {state.items.length ? (
         <div className="flex-row">
-          {filterProducts().map((item) => (
+          {filterItems().map((item) => (
             <ProductItem
               key={item._id}
               

@@ -1,0 +1,15 @@
+.Card {
+    align-items: center !important;
+    text-align: center !important;
+    background-image: url(../../public/images/french-cafe-green.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    background-position: center !important;
+}
+
+h1 {
+   
+}
+
+
