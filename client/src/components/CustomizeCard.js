@@ -16,7 +16,7 @@ import {
   Collapse
 } from 'reactstrap';
 
-const DrinkCard = ({ item }) => {
+const CustomizeCard = ({ item }) => {
   const [show, setShow] = useState(false);
   const [options, setOptions] = useState({
     size: '',
@@ -102,4 +102,4 @@ const DrinkCard = ({ item }) => {
   );
 };
 
-export default DrinkCard;
+export default CustomizeCard;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Button, Container} from 'reactstrap';
+import { Card, Button, Container} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cart from '../components/Cart';
 import CategoryList from '../components/CategoryMenu';
@@ -12,7 +12,7 @@ const Home = ({name}) => {
     return (
         <div className='home'>
         <Container fluid className='home'>
-            {/* <Jumbotron> */}
+            <Card>
            <CategoryList />
               <ProductList />
               
@@ -22,9 +22,9 @@ const Home = ({name}) => {
                    A small French cafe in the heart of downtown. 
                 </p>
                 <p>
-                    <Button variant="primary"><a href='productlist'>Order Now</a></Button>
+                    <Button variant="primary"><a href='itemlist'>Order Now</a></Button>
                 </p>
-           {/* </Jumbotron> */}
+           </Card>
         </Container>
         </div>
     );
