@@ -17,24 +17,28 @@ const slideRight = () => {
     return (
         
         <nav className="navbar navbar-light navbar-expand-md sticky-top nav-bar">
+
             
                 
                 <div className="navbar-nav" id="navcol-1">
+
                     <ul className="navbar-nav ns-auto">
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">Menu</a>
+                            <a className="nav-link" href="/">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Profile</a>
+                            <a className="nav-link active" href="/">Menu</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Cart</a>
+                            <a className="nav-link" href="/">Profile</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Login</a>
+                            <a className="nav-link" href="/">Cart</a>
                         </li>
                         <li className="nav-item">
+
                             <a className="nav-link" href="#" button>Tables</a>
+
                         </li>
                         {/* <li className="nav-item">
                         <button onClick={} className="btn btn-outline-dark d-flex align-items-end" type="button">

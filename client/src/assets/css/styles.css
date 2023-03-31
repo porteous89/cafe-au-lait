@@ -1,3 +1,35 @@
 :root {
-    color:antiquewhite;
+    
 }
+
+* {
+    background-color: #fff;
+}
+
+p {
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h2 {
+    color: rgb(36, 35, 35);
+    font-family: 'Abel', sans-serif;
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Staatliches', cursive;
+
+}
+
+h3 {
+    color:rgb(7, 45, 34)
+}
+
+/* @font-face {
+    font-family: 'SoDo Sans';
+    src: local('SoDo Sans Thin'), local('SoDo-Sans-Thin'),
+        url('SoDoSans-Thin.woff2') format('woff2'),
+        url('SoDoSans-Thin.woff') format('woff'),
+        url('SoDoSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+  } */
