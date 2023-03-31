@@ -44,6 +44,7 @@ function ProductItem(item) {
   return (
     <div className="card px-1 py-1">
 
+
       <Link to={`/products/${_id}`}>
 
       </Link>
@@ -52,6 +53,7 @@ function ProductItem(item) {
            alt={name}
          
         />
+
         <p>{description}</p>
       <div>
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
