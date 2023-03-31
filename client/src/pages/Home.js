@@ -11,10 +11,13 @@ import './home.css';
 const Home = ({name}) => {
     return (
         <div className='home'>
+                
         <Container fluid className='home'>
             <Card>
            <CategoryList />
-              <ProductList />
+           <ProductList />
+                
+              
               
 
                 <h1>Welcome to {name}</h1>

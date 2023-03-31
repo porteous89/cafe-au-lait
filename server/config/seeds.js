@@ -19,7 +19,7 @@ db.once('open', async () => {
         {
             name: 'Alpacchino',
             description: 'An espresso-based coffee with whole milk, prepared with steamed milk foam and topped with cinnamon-chocolate powder.',
-            image: '/images/cappuccino.jpeg',
+            image: 'cappuccino.jpeg',
             price: 4.99,
             quantity: 300,
             category: categories[0]._id,
@@ -27,7 +27,7 @@ db.once('open', async () => {
     {
         name: 'Love You A-Latte',
         description: 'A mix of espresso, steamed milk and a layer of milk foam on top. Served with a mini biscotti.',
-        image: '/images/chailatte.jpg',
+        image: 'chailatte.jpg',
             price: 4.50,
             quantity: 300,
         category: categories[0]._id,

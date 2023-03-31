@@ -42,26 +42,31 @@ function ProductItem(item) {
   }
 
   return (
-    <div className="card px-1 py-1">
-
-
+    
+    <section className="features-boxed">
+            <div className="container">
+                <div className="intro">
+                    <h2 className="text-center">{name} </h2>
+                    {/* <p className="text-center">{desc} </p> */}
+                </div>
+                <div className="row justify-content-center features"></div>
+                <div className="card px-1 py-1">
       <Link to={`/products/${_id}`}>
-
       </Link>
       <img
            src={`/images/${image}`}
-           alt={name}
-         
+           alt={name} 
         />
-
         <p>{description}</p>
       <div>
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
-        <span>${price}</span>
-        
+        <span>${price}</span> 
       </div>
       <button onClick={addToCart}>Add to cart</button>
     </div>
+    </div>
+    </section>
+
   );
 }
 
