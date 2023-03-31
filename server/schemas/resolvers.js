@@ -9,16 +9,26 @@ const resolvers = {
             return await User.find();
         },
         user: async (parent, args, context) => {
+            console.log('tomas');
+            console.log(context.user);
             if (context.user) {
+                // const user = await User.findById(context.user._id).populate({
+                //     path: 'orders',
+                //     populate: 'category',
+                //     path: 'friends',
+                //     populate: 'firstName, lastName, avatar'
+                // });
                 const user = await User.findById(context.user._id).populate({
-                    path: 'orders.items',
-                    populate: 'category',
-                    path: 'friends',
-                    populate: 'firstName, lastName, avatar'
-                });
+                        path: 'orders',
+                        populate: {
+                            path: 'products',
+                        }
+                      
+                    });
 
                 user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
+                console.log(user.orders.length);
+                console.log(user.orders);
                 return user;
             }
             throw new AuthenticationError('You need to be logged in!');

@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
 import CafeTables from './pages/CafeTables';
+import Profile from './components/Profile';
 import ProductItem from './components/ProductItem/index.js';
 import CategoryMenu from './components/CategoryMenu/index.js';
 import ItemList from './components/ItemList/index.js';
@@ -47,6 +48,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/menu" element={<>
             <CategoryMenu />
             {/* <ProductItem /> */}
