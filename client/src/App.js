@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
 import CafeTables from './pages/CafeTables';
+import Profile from './components/Profile';
 
 import Nav from './components/Nav';
 
@@ -42,11 +43,13 @@ function App() {
       <Router>
     <div>
       <StoreProvider>
+
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/menu" element={<Menu />} />
           <Route exact path="/cafe-tables" element={<CafeTables />} />
         </Routes>

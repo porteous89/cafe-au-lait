@@ -50,6 +50,27 @@ export const ADD_USER = gql`
   }
 `;
 
+export const UPDATE_USER = gql`
+  mutation updateUser(
+    $firstName: String
+    $lastName: String
+    $email: String
+    $password: String
+  ) {
+    updateUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
 export const JOIN_TABLE = gql`
   mutation joinTable($tableId: ID!) {
     joinTable(tableId: $tableId) {
