@@ -1,6 +1,6 @@
 
 const db = require('./connection');
-const { User, Item, Category } = require('../models');
+const { User, Item, Category, VirtualTable } = require('../models');
 
 db.once('open', async () => {
     await Category.deleteMany();
@@ -212,6 +212,27 @@ await User.deleteMany({});
         password: 'password12345',
     });
 
+    await VirtualTable.deleteMany();
+
+    const tables = await VirtualTable.insertMany([
+        {
+            name: 'Table 1',
+            description: 'available',
+            capacity: 4,
+        },
+        {
+            name: 'Table 2',
+            description: 'available',  
+            capacity: 6,
+        },
+    ]);
+
+    console.log('tables seeded!');
+
+
+
     process.exit();
 
 });
+
+

@@ -36,6 +36,14 @@ type User {
     orders: [Order]
 }
 
+type VirtualTable {
+    _id: ID
+    name: String
+    description: String
+    capacity: Int
+    attendants: [User]
+}
+
 type Auth {
     token: ID
     user: User
@@ -49,6 +57,8 @@ type Query {
     order(_id: ID!): Order
     checkout(items: [ID]!): Checkout
     allUsers: [User]
+    allTables: [VirtualTable]
+    table(_id: ID!): VirtualTable
 }
 
 type Mutation {
@@ -60,6 +70,8 @@ type Mutation {
     removeOrder(_id: ID!): Order
     addFriend(friendId: ID!): User
     removeFriend(friendId: ID!): User
+    joinTable(tableId: ID!): VirtualTable
+    leaveTable(tableId: ID!): VirtualTable
 }
 
 `;
