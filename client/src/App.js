@@ -12,6 +12,7 @@ import Item from './components/Item';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Footer from './components/Footer';
 
 import Nav from './components/Nav';
 
@@ -41,7 +42,7 @@ function App() {
       <Router>
     <div>
       <StoreProvider>
-        <Nav />
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -54,6 +55,7 @@ function App() {
       </StoreProvider>
    
     </div>
+    <Footer />
     </Router>
     </ApolloProvider>
   );
