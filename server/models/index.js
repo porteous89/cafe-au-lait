@@ -1,10 +1,10 @@
 const User = require('./User');
 const Category = require('./Category');
-const Item = require('./Item');
+const Product = require('./Product');
 const Order = require('./Order');
 const VirtualTable = require('./VirtualTables');
 
 
 
-module.exports = { User, Category, Item, Order, VirtualTable };
+module.exports = { User, Category, Product, Order, VirtualTable };
 

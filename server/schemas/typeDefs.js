@@ -6,7 +6,7 @@ type Category {
     name: String  
 }
 
-type Item {
+type Product {
     _id: ID
     name: String
     description: String
@@ -19,7 +19,7 @@ type Item {
 type Order {
     _id: ID
     purchaseDate: String
-    items: [Item]
+    products: [Product]
 }
 
 type Checkout {
@@ -52,8 +52,8 @@ type Auth {
 type Query {
     user: User
     categories: [Category]
-    items: [Item]
-    itemsCat(category: ID, name: String): [Item] 
+    products(category: ID, name: String): [Product]
+    product(_id: ID!): Product 
     order(_id: ID!): Order
     checkout(items: [ID]!): Checkout
     allUsers: [User]
@@ -66,7 +66,7 @@ type Mutation {
     updateUser(firstName: String, lastName: String, email: String, password: String, avatar: String): User
     login(email: String!, password: String!): Auth
     addOrder(items: [ID]!): Order
-    updateItem(_id: ID!, quantity: Int!): [Item]
+    updateProduct(_id: ID!, quantity: Int!): Product
     removeOrder(_id: ID!): Order
     addFriend(friendId: ID!): User
     removeFriend(friendId: ID!): User
