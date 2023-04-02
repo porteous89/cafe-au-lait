@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_CHECKOUT } from '../../utils/queries';
@@ -18,14 +18,14 @@ const Cart = () => {
 
   // We check to see if there is a data object that exists, if so this means that a checkout session was returned from the backend
   // Then we should redirect to the checkout with a reference to our session id
-  useEffect(() => {
-    if (data) {
-      stripePromise.then((res) => {
-        res.redirectToCheckout({ sessionId: data.checkout.session });
-      });
-    }
-  }, [data]);
-
+  // useEffect(() => {
+  //   if (data) {
+  //     stripePromise.then((res) => {
+  //       res.redirectToCheckout({ sessionId: data.checkout.session });
+  //     });
+  //   }
+  // }, [data]);
+  const cart = useMemo(() => state.cart, [state.cart]);
   // If the cart's length or if the dispatch function is updated, check to see if the cart is empty.
   // If so, invoke the getCart method and populate the cart with the existing from the session
   useEffect(() => {
@@ -37,7 +37,14 @@ const Cart = () => {
     if (!state.cart.length) {
       getCart();
     }
-  }, [state.cart.length, dispatch]);
+
+    if (data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: data.checkout.session });
+      });
+    }
+  }, 
+  [state.cart.length, dispatch]);
 
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
@@ -56,12 +63,13 @@ const Cart = () => {
   function submitCheckout() {
     const productIds = [];
 
+
     state.cart.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
         productIds.push(item._id);
       }
     });
-
+    
     getCheckout({
       variables: { products: productIds },
     });
@@ -75,40 +83,53 @@ const Cart = () => {
         </span>
       </div>
     );
+   
   }
+  const hasDuplicates = state.cart.filter((item, index) => {
+    return state.cart.some((otherItem, otherIndex) => {
+      return otherIndex > index && otherItem._id === item._id;
+    });
+  }).length > 0;
+  
+  console.log(hasDuplicates);
 
   return (
     <div className="cart">
-      <div className="close" onClick={toggleCart}>
-        [close]
-      </div>
-      <h2>Shopping Cart</h2>
-      {state.cart.length ? (
-        <div>
-          {state.cart.map((item) => (
+    <div className="close" onClick={toggleCart}>
+      [close]
+    </div>
+    <h2>Shopping Cart</h2>
+    {state.cart.length ? (
+      <div>
+        {state.cart
+          .filter(
+            (item, index, self) =>
+              index ===
+              self.findIndex((otherItem) => otherItem._id === item._id)
+          )
+          .map((item) => (
             <CartItem key={item._id} item={item} />
           ))}
+        <div className="flex-row space-between">
+          <strong>Total: ${calculateTotal()}</strong>
 
-          <div className="flex-row space-between">
-            <strong>Total: ${calculateTotal()}</strong>
-
-            {/* Check to see if the user is logged in. If so render a button to check out */}
-            {Auth.loggedIn() ? (
-              <button onClick={submitCheckout}>Checkout</button>
-            ) : (
-              <span>(log in to check out)</span>
-            )}
-          </div>
+          {/* Check to see if the user is logged in. If so render a button to check out */}
+          {Auth.loggedIn() ? (
+            <button onClick={submitCheckout}>Checkout</button>
+          ) : (
+            <span>(log in to check out)</span>
+          )}
         </div>
-      ) : (
-        <h3>
-          <span role="img" aria-label="shocked">
-            😱
-          </span>
-          You haven't added anything to your cart yet!
-        </h3>
-      )}
-    </div>
+      </div>
+    ) : (
+      <h3>
+        <span role="img" aria-label="shocked">
+          😱
+        </span>
+        You haven't added anything to your cart yet!
+      </h3>
+    )}
+  </div>
   );
 };
 
