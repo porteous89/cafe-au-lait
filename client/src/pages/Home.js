@@ -14,7 +14,7 @@ const Home = ({name}) => {
             <Card>
                 
                 <div>
-                <h1>Welcome to {name}</h1>
+                <h1>Welcome to Cafe Du Lait</h1>
                 <p>
                    A small French cafe in the heart of downtown. 
                 </p>
