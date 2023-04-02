@@ -43,10 +43,10 @@ const { cart } = state;
     // console.log('Added to cart:', { ...item, options });
     // setShow(false);
     //new comment
+
     console.log(cart);
     console.log(item);
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
-   
     
     if (itemInCart) {
       dispatch({
@@ -67,6 +67,8 @@ const { cart } = state;
     }
     console.log(itemInCart);
     console.log(cart);
+    //wait for the cart to update and then reload the page
+    setTimeout(function(){ window.location.reload(); }, 1000);
   }
 
   
