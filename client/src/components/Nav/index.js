@@ -2,7 +2,7 @@ import "../../assets/css/navbar.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { data } from '../../imageData';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Auth from "../../utils/auth";
 import  cart  from '../Cart';
 
@@ -27,26 +27,26 @@ const Nav = ({name, cart}) => {
         <div className="navbar-nav" id="navcol-1">
           <ul className="navbar-nav ns-auto">
             <li className="nav-item">
-            <Link className="nav-link" to="/home">Home</Link>
+            <NavLink className="nav-link active" to="/home">Home</NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" href="/menu">Menu</a>
+              <NavLink className="nav-link active" to="/menu">Menu</NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/profile">Profile</a>
+              <NavLink className="nav-link active" to="/profile">Profile</NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/cart">Cart</a>
+              <NavLink className="nav-link active" to="/cart">Cart</NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/tables" button>Tables</a>
+              <NavLink className="nav-link active" to="/tables" button>Tables</NavLink>
             </li>
             {Auth.loggedIn() ? (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/orderHistory">
+                  <NavLink className="nav-link" to="/orderHistory">
                     Order History
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="/" onClick={() => Auth.logout()}>
@@ -57,9 +57,9 @@ const Nav = ({name, cart}) => {
             ) : (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/signup">
+                  <NavLink className="nav-link active" to="/signup">
                     Login/Signup
-                  </Link>
+                  </NavLink>
                 </li>
               </>
             )}

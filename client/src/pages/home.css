@@ -1,19 +1,80 @@
-.card {
+.home-container .card {
     align-items: center !important;
     text-align: center !important;
-    background-image: url(../../public/images/french-cafe-green.jpg);
+    background-image: url(../../public/images/water\ cafe.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    background-position: center !important;
+    background-position: center center;
     height: 75vh;
     width: 98vw;
     margin-top: 41px;
     margin-bottom: -18px;
-}
+    box-shadow: 5px 5px 5px 0px lightslategrey;
+  }
 
-h1 {
-   
-}
+  .home-container .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 
+  .home-container .home div {
+    background-color: transparent;
+  }
 
+  .home-container .home .welcome-card h1 {
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 2px #ccc;
+    margin-bottom: 20px;
+    font-family: 'Abel', sans-serif;
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Staatliches', cursive;
+  }
+
+  .home-container .home .welcome-card p {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+
+  .home-container .home h1,
+  .home-container .home p {
+    background-color: transparent;
+    color: white;
+  }
+
+  .home-container button {
+    background-color: rgb(12, 77, 55);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+  }
+  
+  
+  .home-container button:hover {
+    background-color: #3185d4;
+  }
+
+  .home-container button a {
+    text-decoration: none;
+    background-color: transparent;
+  }
+
+  .home-container a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .home-container .home .welcome-card p {
+    color: white;
+  }
+
+  
+  
