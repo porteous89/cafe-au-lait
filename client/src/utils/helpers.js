@@ -7,7 +7,7 @@ export function pluralize(name, count) {
 
 export function idbPromise(storeName, method, object) {
   return new Promise((resolve, reject) => {
-    const request = window.indexedDB.open('shop-shop', 1);
+    const request = window.indexedDB.open('cafe', 1);
     let db, tx, store;
     request.onupgradeneeded = function(e) {
       const db = request.result;
@@ -35,6 +35,15 @@ export function idbPromise(storeName, method, object) {
           store.put(object);
           resolve(object);
           break;
+          // if (Array.isArray(object)) {
+          //   object.forEach((item) => {
+          //     store.put(item);
+          //   });
+          //   resolve(object);
+          // } else {
+          //   store.put(object);
+          //   resolve(object);
+          // }
         case 'get':
           const all = store.getAll();
           all.onsuccess = function() {

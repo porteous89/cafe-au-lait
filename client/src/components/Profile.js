@@ -69,22 +69,22 @@ function Profile() {
                 ← Back to Main Page
             </Link>
 
-            <h2>Profile*{userData.orders.length}*</h2>
+            <h2>Profile</h2>
             <p>First Name: {userData.firstName}</p>
             <p>Last Name: {userData.lastName}</p>
             <p>Email: {userData.email}</p>
-            <p>{userData.orders[0].purchaseDate}</p>
-            <p>{userData.orders[0].products.length}</p>
+            {/* <p>{userData.orders[0].purchaseDate}</p>
+            
             <p>{userData.orders[0].products[0].name}</p>
             <ul>
             {userData.orders.map (order => {
                 <li key={order._id}>
 
-                {/* <p>Past Orders {order.purchaseDate}</p> */}
+                <p>Past Orders {order.purchaseDate}</p>
                 <p>Past Orders {order._id}</p>
                 </li>
             })}
-            </ul>
+            </ul> */}
             <button onClick={handleEditClick}>Edit</button>
 
             {showAlert && (

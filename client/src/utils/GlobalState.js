@@ -2,6 +2,7 @@ import React, { createContext, useContext } from "react";
 import { useProductReducer } from './reducers/reducers'
 
 const StoreContext = createContext();
+const { Provider } = StoreContext;
 const initialState = {
   joinedTable: null,
   messages: [],

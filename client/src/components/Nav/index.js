@@ -4,6 +4,7 @@ import { data } from '../../imageData';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Auth from "../../utils/auth";
+import  cart  from '../Cart';
 
 const Nav = ({name, cart}) => {
 

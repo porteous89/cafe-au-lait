@@ -6,6 +6,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import { StoreProvider } from './utils/GlobalState';
 
+import Success from './pages/Success';
 import Nav from './components/Nav/index.js';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -16,6 +17,7 @@ import Profile from './components/Profile';
 import ProductItem from './components/ProductItem/index.js';
 import CategoryMenu from './components/CategoryMenu/index.js';
 import ItemList from './components/ItemList/index.js';
+import Cart from './components/Cart/index.js';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,6 +47,8 @@ function App() {
       <StoreProvider>
         <Nav name="Cafe Du Lait"/>
         <Routes>
+          <Route path="/success" element={<Success />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
