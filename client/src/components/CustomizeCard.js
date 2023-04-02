@@ -15,6 +15,12 @@ import {
   PopoverHeader,
   Collapse
 } from 'reactstrap';
+import { cartItem } from '../utils/actions';
+
+import { useStoreContext } from '../utils/GlobalState';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../utils/actions';
+import { idbPromise } from '../utils/helpers';
+
 
 const CustomizeCard = ({ item, isOpen }) => {
   const [show, setShow] = useState(false);
@@ -28,11 +34,42 @@ const CustomizeCard = ({ item, isOpen }) => {
     setShow(!show);
   };
 
+  const [state, dispatch] = useStoreContext();
+  const { _id } = item;
+const { cart } = state;
+
   const addToCart = () => {
     // Add item to cart with selected options
-    console.log('Added to cart:', { ...item, options });
-    setShow(false);
-  };
+    // console.log('Added to cart:', { ...item, options });
+    // setShow(false);
+    //new comment
+    console.log(cart);
+    console.log(item);
+    const itemInCart = cart.find((cartItem) => cartItem._id === _id)
+   
+    
+    if (itemInCart) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: _id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+      });
+      idbPromise('cart', 'put', {
+        ...itemInCart,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+      });
+    } else {
+      dispatch({
+        type: ADD_TO_CART,
+        item: { ...item, purchaseQuantity: 1 }
+      });
+      idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
+    }
+    console.log(itemInCart);
+    console.log(cart);
+  }
+
+  
 
   const onChange = (e) => {
     setOptions({
@@ -40,6 +77,31 @@ const CustomizeCard = ({ item, isOpen }) => {
       [e.target.name]: e.target.value
     });
   };
+// const CustomizeCard = ({ item, isOpen }) => {
+//   const [show, setShow] = useState(false);
+//   const [options, setOptions] = useState({
+//     size: '',
+//     milk: '',
+//     flavor: ''
+//   });
+
+//   const handleToggle = () => {
+//     setShow(!show);
+//   };
+
+//   const addToCart = () => {
+//     // Add item to cart with selected options
+//     console.log('Added to cart:', { ...item, options });
+//     setShow(false);
+//   };
+
+//   const onChange = (e) => {
+//     setOptions({
+//       ...options,
+//       [e.target.name]: e.target.value
+//     });
+//   };
+
 
   return (
     <div>
@@ -87,7 +149,10 @@ const CustomizeCard = ({ item, isOpen }) => {
         </CardBody>
       </Card>
     </div>
+    
   );
 };
+
+
 
 export default CustomizeCard;

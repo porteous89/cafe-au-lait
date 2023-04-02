@@ -66,6 +66,7 @@ function ProductItem(item) {
             <div>{quantity} {pluralize("item", quantity)} in stock</div>
             <span>${price}</span>
           </div>
+          
           <Button onClick={toggleCustomiseForm} borderRadius="8px" py={3} px={2} mt={4} lineHeight={1} size="md">
             Customize
           </Button>

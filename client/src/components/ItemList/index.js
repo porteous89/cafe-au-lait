@@ -6,6 +6,8 @@ import { useQuery } from '@apollo/client';
 import { QUERY_PRODUCTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 
+import Cart from '../Cart';
+
 function ProductList() {
   const [state, dispatch] = useStoreContext();
   const { currentCategory } = state;
