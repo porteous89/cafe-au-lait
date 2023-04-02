@@ -42,6 +42,7 @@ const { cart } = state;
     // Add item to cart with selected options
     // console.log('Added to cart:', { ...item, options });
     // setShow(false);
+    //new comment
     console.log(cart);
     console.log(item);
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
