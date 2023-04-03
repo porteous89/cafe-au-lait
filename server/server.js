@@ -7,12 +7,12 @@ const { makeExecutableSchema } = require("@graphql-tools/schema");
 const { WebSocketServer } = require("ws");
 const { useServer } = require("graphql-ws/lib/use/ws");
 const { typeDefs, resolvers } = require("./schemas");
-
+const path = require("path");
 const { authMiddleware } = require("./utils/auth");
 const db = require("./config/connection");
 const paymentRoutes = require("./routes/api/payments");
 
-const PORT = parseInt(process.env.PORT) || 3001;  //? process.env.PORT: 3001;
+const PORT = parseInt(process.env.PORT) || 3001; //? process.env.PORT: 3001;
 const pubsub = new PubSub();
 
 // Create schema, which will be used separately by ApolloServer and
@@ -56,13 +56,15 @@ const server = new ApolloServer({
 });
 // await server.start();
 // server.applyMiddleware({ app });
-// if (process.env.NODE_ENV === 'production') {
-//     app.use(express.static(path.join(__dirname, '../client/build')));
-// }
+//if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+//}
 
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
+app.use(express.static(path.join(__dirname, "../client/build")));
+app.get("/", (req, res) =>
+  res.sendFile(path.join(__dirname, "../client/build/index.html"))
+);
+
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
