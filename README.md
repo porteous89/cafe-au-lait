@@ -44,10 +44,12 @@ THEN the colour of the seat turns black
 WHEN I want to chat with others at my table
 THEN I can use the chat box and send messages.
 ```
-![Screenshot](../cafe-au-lait/client/public/images/Screenshot%20(53).png)
-![Screenshot](../cafe-au-lait/client/public/images/Screenshot%20(54).png)
-![Screenshot](../cafe-au-lait/client/public/images/Screenshot%20(55).png)
-![Screenshot](../cafe-au-lait/client/public/images/Screenshot%20(56).png)
+## Screen Shots
+
+![Screenshot](client\public\images\Screenshot (53).png)
+![Screenshot](client\public\images\Screenshot (54).png)
+![Screenshot](client\public\images\Screenshot (55).png)
+![Screenshot](client\public\images\Screenshot (56).png)
 
 ## Goal
 - Use React for the front end.
