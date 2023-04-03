@@ -12,7 +12,7 @@ const { authMiddleware } = require("./utils/auth");
 const db = require("./config/connection");
 const paymentRoutes = require("./routes/api/payments");
 
-const PORT = parent(process.env.PORT) || 3001;  //? process.env.PORT: 3001;
+const PORT = parseInt(process.env.PORT) || 3001;  //? process.env.PORT: 3001;
 const pubsub = new PubSub();
 
 // Create schema, which will be used separately by ApolloServer and
