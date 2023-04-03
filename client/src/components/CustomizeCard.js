@@ -71,6 +71,7 @@ const { cart } = state;
     setTimeout(function(){ window.location.reload(); }, 1000);
   }
 
+
   
 
   const onChange = (e) => {
@@ -140,9 +141,21 @@ const { cart } = state;
                   <option>Vanilla</option>
                 </Input>
               </FormGroup>
-              <Button id="PopoverFocus" type="button" borderRadius="8px" py={3} px={2} mt={2} lineHeight={1} size="md" onClick={addToCart}>
-                Add to Cart
-              </Button>
+              <Button
+  id="PopoverFocus"
+  type="button"
+  py={3}
+  px={2}
+  mt={2}
+  size="md"
+  onClick={addToCart}
+  style={{
+    borderRadius: '8px',
+    lineHeight: 1,
+  }}
+>
+  Add to Cart
+</Button>
             </div>
           )}
           <UncontrolledPopover trigger="focus" placement="bottom" target="PopoverFocus">
