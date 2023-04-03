@@ -1,4 +1,6 @@
-.home-container .card {
+
+.home .card {
+
     align-items: center !important;
     text-align: center !important;
     background-image: url(../../public/images/water\ cafe.jpg);
