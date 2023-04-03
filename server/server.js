@@ -7,7 +7,7 @@ const { makeExecutableSchema } = require("@graphql-tools/schema");
 const { WebSocketServer } = require("ws");
 const { useServer } = require("graphql-ws/lib/use/ws");
 const { typeDefs, resolvers } = require("./schemas");
-
+const path = require("path");
 const { authMiddleware } = require("./utils/auth");
 const db = require("./config/connection");
 const paymentRoutes = require("./routes/api/payments");
@@ -60,6 +60,7 @@ const server = new ApolloServer({
 //   app.use(express.static(path.join(__dirname, '../client/build')));
 //}
 
+app.use(express.static(path.join(__dirname, "../client/build")));
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "../client/build/index.html"))
 );
