@@ -21,7 +21,6 @@ const Home = ({name}) => {
               </p>
             </div>
           </Card>
-          <Cart />
         </div>
       </Container>      
     );
