@@ -19,3 +19,71 @@
   margin-top: 1rem;
   cursor: pointer;
 }
+
+.message-box {
+  position: fixed;
+  background: #708f86;
+  z-index: 10000;
+  height: 420px;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.input-message {
+  position: absolute;
+  bottom: 9px;
+  width: 86%;
+  border-radius: 7px;
+}
+
+.input-message input {
+  padding: 7px;
+}
+
+.input-message button {
+  position: absolute;
+  right: 0px;
+  border-radius: 0px 5px 5px 0px;
+}
+
+p.message {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.messages {
+  background: transparent;
+}
+
+p.message {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.messages {
+  background: transparent;
+  overflow: scroll;
+  max-height: 350px;
+}
+
+span.close-me {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 40px;
+  font-weight: bold;
+  font-size: 28px;
+  cursor: pointer;
+  top: -20px;
+  right: -20px;
+  background: #008001;
+  color: white;
+  box-shadow: 2px 2px 15px #636363;
+}

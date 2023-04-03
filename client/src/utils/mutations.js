@@ -72,12 +72,18 @@ export const UPDATE_USER = gql`
 `;
 
 export const JOIN_TABLE = gql`
-  mutation joinTable($tableId: ID!) {
-    joinTable(tableId: $tableId) {
+  mutation joinTable($tableId: ID!, $index: Int!) {
+    joinTable(tableId: $tableId, index: $index) {
       _id
       name
       description
       capacity
+      seats {
+        user {
+          _id
+        }
+        index
+      }
       attendants {
         _id
         firstName
@@ -99,6 +105,44 @@ export const LEAVE_TABLE = gql`
         firstName
         lastName
       }
+    }
+  }
+`;
+
+export const ADD_MESSAGE = gql`
+  mutation addMessage($tableId: ID!, $message: String!) {
+    addMessage(tableId: $tableId, message: $message) {
+      _id
+      message
+      from {
+        _id
+        firstName
+        lastName
+        avatar
+      }
+      table {
+        _id
+      }
+      date
+    }
+  }
+`;
+
+export const NEW_MESSAGE = gql`
+  subscription OnNewMessage($message: MESSAGE) {
+    newMessage(message: $message) {
+      _id
+      message
+      from {
+        _id
+        firstName
+        lastName
+        avatar
+      }
+      table {
+        _id
+      }
+      date
     }
   }
 `;

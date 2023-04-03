@@ -105,7 +105,8 @@ export const reducer = (state, action) => {
     case JOIN_TABLE:
       return {
         ...state,
-        joinedTable: action.tableId,
+        joinedTable: action.payload.tableId,
+        index: action.payload.index,
       };
     case LEAVE_TABLE:
       return {

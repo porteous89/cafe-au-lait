@@ -1,41 +1,84 @@
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const path = require('path');
-const { typeDefs, resolvers } = require('./schemas');
-const { authMiddleware } = require('./utils/auth');
-const db = require('./config/connection');
-const paymentRoutes = require('./routes/api/payments');
+const { createServer } = require("http");
+const express = require("express");
+const { ApolloServer, gql } = require("apollo-server-express");
+const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
+const { PubSub } = require("graphql-subscriptions");
+const { makeExecutableSchema } = require("@graphql-tools/schema");
+const { WebSocketServer } = require("ws");
+const { useServer } = require("graphql-ws/lib/use/ws");
+const { typeDefs, resolvers } = require("./schemas");
 
-const PORT = process.env.PORT || 3001;
+const { authMiddleware } = require("./utils/auth");
+const db = require("./config/connection");
+const paymentRoutes = require("./routes/api/payments");
+
+const PORT = parent(process.env.PORT) || 3001;  //? process.env.PORT: 3001;
+const pubsub = new PubSub();
+
+// Create schema, which will be used separately by ApolloServer and
+// the WebSocket server.
+const schema = makeExecutableSchema({ typeDefs, resolvers });
+
+// Create an Express app and HTTP server; we will attach the WebSocket
+// server and the ApolloServer to this HTTP server.
 const app = express();
+const httpServer = createServer(app);
+
+// Set up WebSocket server.
+const wsServer = new WebSocketServer({
+  server: httpServer,
+});
+
+const serverCleanup = useServer({ schema }, wsServer);
+
+// Set up ApolloServer.
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: authMiddleware,
+  schema,
+  plugins: [
+    // Proper shutdown for the HTTP server.
+    ApolloServerPluginDrainHttpServer({ httpServer }),
+
+    // Proper shutdown for the WebSocket server.
+    {
+      async serverWillStart() {
+        return {
+          async drainServer() {
+            await serverCleanup.dispose();
+          },
+        };
+      },
+    },
+  ],
+  subscriptions: {
+    onConnect: () => console.log("Connected to websocket"),
+  },
+  context: authMiddleware,
 });
-app.use('/images', express.static(path.join(__dirname, '../client/images')));
-app.use("./routes/api/payments", paymentRoutes);
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// await server.start();
+// server.applyMiddleware({ app });
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname, '../client/build')));
+// }
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
-}
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
-
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 const startApolloServer = async (typeDefs, resolvers) => {
-    await server.start();
-    server.applyMiddleware({ app });
-
-    db.once('open', () => {
-        app.listen(PORT, () => {
-            console.log(`API server running on port ${PORT}!`);
-            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-        });
+  await server.start();
+  server.applyMiddleware({ app });
+  // server.installSubscriptionHandlers(app);
+  db.once("open", () => {
+    httpServer.listen(PORT, () => {
+      console.log(
+        `🚀 Query endpoint ready at http://localhost:${PORT}${server.graphqlPath}`
+      );
+      console.log(
+        `🚀 Subscription endpoint ready at ws://localhost:${PORT}${server.graphqlPath}`
+      );
     });
+  });
 };
 
 startApolloServer(typeDefs, resolvers);
+
+// Now that our HTTP server is fully set up, actually listen.

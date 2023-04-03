@@ -2,7 +2,7 @@ import React, { createContext, useContext } from "react";
 import { useProductReducer } from './reducers/reducers'
 
 const StoreContext = createContext();
-const { Provider } = StoreContext;
+// const { Provider } = StoreContext;
 const initialState = {
   joinedTable: null,
   messages: [],
@@ -14,8 +14,10 @@ const StoreProvider = ({ value = [], ...props }) => {
     cart: [],
     cartOpen: false,
     categories: [],
-    currentCategory: '',
+    currentCategory: "",
     selectedTable: null,
+    messages: [],
+    joinedTable: null,
   });
 
   return <StoreContext.Provider value={[state, dispatch]} {...props} />;

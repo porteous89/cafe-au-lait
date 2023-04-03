@@ -72,12 +72,18 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_ALL_TABLES = gql`
- query allTables {
-  allTables {
+  query allTables {
+    allTables {
       _id
       name
       description
       capacity
+      seats {
+        user {
+          _id
+        }
+        index
+      }
       attendants {
         _id
         firstName
@@ -101,6 +107,25 @@ export const QUERY_SINGLE_TABLE = gql`
         lastName
         avatar
       }
+    }
+  }
+`;
+
+export const QUERY_MESSAGES = gql`
+  query allMessages($tableId: ID) {
+    allMessages(tableId: $tableId) {
+      _id
+      message
+      from {
+        _id
+        firstName
+        lastName
+        avatar
+      }
+      table {
+        _id
+      }
+      date
     }
   }
 `;
