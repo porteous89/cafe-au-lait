@@ -59,7 +59,7 @@ const Nav = ({ name, cart }) => {
                         ? "active"
                         : ""
                     }`}
-                    to={link.name !== "cart" && link.path}
+                    to={link.path}
                     onClick={() => handleClick(link.name)}
                   >
                     {link.name}
