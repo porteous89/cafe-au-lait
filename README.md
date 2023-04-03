@@ -46,6 +46,15 @@ THEN I can use the chat box and send messages.
 ```
 ## Screen Shots
 
+Landing Page
+<img src="client\public\images\Screenshot (53).png" width= 45%>
+
+Projects Section
+<img src="src\images\projects-screenshot.png" width= 45%>
+
+Responsiveness
+<img src="src\images\showing-responsiveness.png" width= 45%>
+
 ![Screenshot](client\public\images\Screenshot (53).png)
 ![Screenshot](client\public\images\Screenshot (54).png)
 ![Screenshot](client\public\images\Screenshot (55).png)
