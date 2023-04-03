@@ -18,7 +18,6 @@ import Signup from "./pages/Signup";
 import Footer from "./components/Footer";
 import CafeTables from "./pages/CafeTables";
 import Profile from "./components/Profile";
-import ProductItem from "./components/ProductItem/index.js";
 import CategoryMenu from "./components/CategoryMenu/index.js";
 import ItemList from "./components/ItemList/index.js";
 import Cart from "./components/Cart/index.js";
@@ -64,7 +63,6 @@ function App() {
                 element={
                   <>
                     <CategoryMenu />
-                    {/* <ProductItem /> */}
                     <ItemList />
                   </>
                 }

@@ -36,18 +36,11 @@ const CustomizeCard = ({ item, isOpen }) => {
 
   const [state, dispatch] = useStoreContext();
   const { _id } = item;
-const { cart } = state;
+  const { cart } = state;
 
   const addToCart = () => {
-    // Add item to cart with selected options
-    // console.log('Added to cart:', { ...item, options });
-    // setShow(false);
-    //new comment
-
-    console.log(cart);
-    console.log(item);
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
-    
+
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
@@ -68,11 +61,8 @@ const { cart } = state;
     console.log(itemInCart);
     console.log(cart);
     //wait for the cart to update and then reload the page
-    setTimeout(function(){ window.location.reload(); }, 1000);
+    setTimeout(function () { window.location.reload(); }, 1000);
   }
-
-
-  
 
   const onChange = (e) => {
     setOptions({
@@ -80,31 +70,6 @@ const { cart } = state;
       [e.target.name]: e.target.value
     });
   };
-// const CustomizeCard = ({ item, isOpen }) => {
-//   const [show, setShow] = useState(false);
-//   const [options, setOptions] = useState({
-//     size: '',
-//     milk: '',
-//     flavor: ''
-//   });
-
-//   const handleToggle = () => {
-//     setShow(!show);
-//   };
-
-//   const addToCart = () => {
-//     // Add item to cart with selected options
-//     console.log('Added to cart:', { ...item, options });
-//     setShow(false);
-//   };
-
-//   const onChange = (e) => {
-//     setOptions({
-//       ...options,
-//       [e.target.name]: e.target.value
-//     });
-//   };
-
 
   return (
     <div>
@@ -116,7 +81,7 @@ const { cart } = state;
                 <Label for="sizeSelect">Select Size</Label>
                 <Input type="select" name="size" id="sizeSelect" onChange={onChange}>
                   <option>Select</option>
-                  <option>Regular</option>
+                  <option>Small</option>
                   <option>Large (+$1.00)</option>
                 </Input>
               </FormGroup>
@@ -142,20 +107,20 @@ const { cart } = state;
                 </Input>
               </FormGroup>
               <Button
-  id="PopoverFocus"
-  type="button"
-  py={3}
-  px={2}
-  mt={2}
-  size="md"
-  onClick={addToCart}
-  style={{
-    borderRadius: '8px',
-    lineHeight: 1,
-  }}
->
-  Add to Cart
-</Button>
+                id="PopoverFocus"
+                type="button"
+                py={3}
+                px={2}
+                mt={2}
+                size="md"
+                onClick={addToCart}
+                style={{
+                  borderRadius: '8px',
+                  lineHeight: 1,
+                }}
+              >
+                Add to Cart
+              </Button>
             </div>
           )}
           <UncontrolledPopover trigger="focus" placement="bottom" target="PopoverFocus">
@@ -164,7 +129,7 @@ const { cart } = state;
         </CardBody>
       </Card>
     </div>
-    
+
   );
 };
 
