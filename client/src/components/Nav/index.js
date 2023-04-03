@@ -21,11 +21,11 @@ const Nav = ({ name, cart }) => {
   const [activeLink, setActiveLink] = useState("Home");
 
   const [links, setLinks] = useState([
-    { name: "Home", path: "/" },
-    { name: "Menu", path: "/menu" },
-    { name: "Profile", path: "/profile" },
-    { name: "Cart", path: "/cart" },
-    { name: "Tables", path: "/cafe-tables" },
+    { name: "home", path: "/" },
+    { name: "menu", path: "/menu" },
+    { name: "profile", path: "/profile" },
+    { name: "cart", path: "/cart" },
+    { name: "tables", path: "/cafe-tables" },
   ]);
 
   const handleClick = (path) => {
@@ -53,7 +53,11 @@ const Nav = ({ name, cart }) => {
                 <li className="nav-item" key={link.name}>
                   <Link
                     className={`nav-link ${
-                      activeLink === link.name ? "active" : ""
+                      pathname === link.path
+                        ? "active"
+                        : pathname === `/${link.name}`
+                        ? "active"
+                        : ""
                     }`}
                     to={link.name !== "cart" && link.path}
                     onClick={() => handleClick(link.name)}
@@ -66,17 +70,6 @@ const Nav = ({ name, cart }) => {
 
             {Auth.loggedIn() ? (
               <>
-                <li className="nav-item">
-                  <Link
-                    onClick={() => handleClick("Order History")}
-                    className={`nav-link ${
-                      activeLink === "Order History" ? "active" : ""
-                    }`}
-                    to="/orderHistory"
-                  >
-                    Order History
-                  </Link>
-                </li>
                 <li className="nav-item">
                   <Link
                     className="nav-link"
@@ -93,7 +86,7 @@ const Nav = ({ name, cart }) => {
                   <Link
                     onClick={() => handleClick("Login/Signup")}
                     className={`nav-link ${
-                      activeLink === "Login/Signup" ? "active" : ""
+                      pathname === "/signup" ? "active" : ""
                     }`}
                     to="/signup"
                   >

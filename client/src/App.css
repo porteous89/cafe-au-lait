@@ -99,3 +99,7 @@ font-size: 22px;
 .profile-details p{
   margin-bottom: 0;
 }
+
+.nav-link{
+  text-transform: capitalize;
+}
