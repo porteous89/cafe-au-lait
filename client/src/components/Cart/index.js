@@ -117,7 +117,10 @@ const Cart = () => {
             {/* Check to see if the user is logged in. If so render a button to check out */}
             {Auth.loggedIn() ? (
               // <button onClick={submitCheckout}>Checkout</button>
-              <a href="https://buy.stripe.com/test_8wM8xVag392m9eE8wx">
+              <a
+                className="ms-2 btn btn-primary"
+                href="https://buy.stripe.com/test_14k4hF73R6UeaiI4gm"
+              >
                 Checkout
               </a>
             ) : (
