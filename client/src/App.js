@@ -1,7 +1,6 @@
 import './App.css';
 import "./assets/css/styles.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { StoreProvider } from './utils/GlobalState';
@@ -18,6 +17,10 @@ import ProductItem from './components/ProductItem/index.js';
 import CategoryMenu from './components/CategoryMenu/index.js';
 import ItemList from './components/ItemList/index.js';
 import Cart from './components/Cart/index.js';
+
+import { split } from "@apollo/client";
+import { WebSocketLink } from "@apollo/client/link/ws";
+import { getMainDefinition } from "@apollo/client/utilities";
 
 const httpLink = createHttpLink({
   uri: '/graphql',

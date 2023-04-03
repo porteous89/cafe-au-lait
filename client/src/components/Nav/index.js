@@ -25,7 +25,7 @@ const Nav = ({ name, cart }) => {
     { name: "Menu", path: "/menu" },
     { name: "Profile", path: "/profile" },
     { name: "Cart", path: "/cart" },
-    { name: "Tables", path: "/tables" },
+    { name: "Tables", path: "/cafe-tables" },
   ]);
 
   const handleClick = (path) => {

@@ -1,12 +1,26 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Order, Product, Category, VirtualTable } = require("../models");
+const { User, Order, Product, Category, VirtualTable, Message } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")(
   "k_test_51MqfRXLKxBhs1x2ohImp5tfmxKnV9g1D9aptSYH23aU8snf1VIvrhBZ2XcXNfHLhrVqngQFe760FsHAk3P0a9cap00xNKg5A0S"
 );
+const { PubSub } = require("graphql-subscriptions");
+const pubsub = new PubSub();
+const NEW_MESSAGE = "NEW_MESSAGE";
+const USER_LEAVED = "USER_LEAVE";
+const USER_JOINED = "USER_JOINED";
 
 const resolvers = {
   Query: {
+    allMessages: async (parent, { tableId }, context) => {
+      if (!tableId) {
+        throw new Error("`tableId` is required");
+      }
+      return await Message.find({ table: tableId })
+        .limit(30)
+        .populate("table")
+        .populate("from");
+    },
     allUsers: async () => {
       return await User.find();
     },
@@ -112,11 +126,12 @@ const resolvers = {
       return { token, user };
     },
     updateUser: async (parent, args, context) => {
-       if (context.user) {
-        
-           return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-       }
-       throw new AuthenticationError('You need to be logged in!');
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -179,19 +194,54 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    joinTable: async (parent, { tableId }, context) => {
+    joinTable: async (parent, { tableId, index }, context) => {
       if (context.user) {
+        const table = await VirtualTable.findOne({ _id: tableId });
+        seats = table.seats;
+        if (!seats || seats.length === 0) {
+          seats = [];
+        }
+
+        let indeces = seats.map((a) => a.index);
+        if (indeces.indexOf(index) > 0) {
+          //already taken
+        }
+
+        //we need to add code to it to hangle leave table and join this one.
+
+        await VirtualTable.findOneAndUpdate(
+          {
+            seats: {
+              $elemMatch: { user: context.user._id },
+            },
+          },
+          { $pull: { seats: { user: context.user._id } } }
+        );
+
         const updatedTable = await VirtualTable.findByIdAndUpdate(
           { _id: tableId },
-          { $addToSet: { attendants: context.user._id } },
+          {
+            $addToSet: { attendants: context.user._id },
+            $addToSet: { seats: { index: index, user: context.user._id } },
+          },
           { new: true }
         ).populate("attendants");
+
+        // pobsub.publish("")
         return updatedTable;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
     leaveTable: async (parent, { tableId }, context) => {
       if (context.user) {
+        await VirtualTable.findOneAndUpdate(
+          {
+            seats: {
+              $elemMatch: { user: context.user._id },
+            },
+          },
+          { $pull: { seats: { user: context.user._id } } }
+        );
         const updatedTable = await VirtualTable.findByIdAndUpdate(
           { _id: tableId },
           { $pull: { attendants: context.user._id } },
@@ -201,7 +251,31 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    addMessage: async (parent, { tableId, message }, context) => {
+      if (context.user) {
+        const messageToSave = await Message.create({
+          message: message,
+          table: tableId,
+          from: context.user._id,
+          date: new Date(),
+        });
+        pubsub.publish(NEW_MESSAGE, messageToSave);
+        return messageToSave;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+  },
+  Subscription: {
+    newMessage: {
+      subcribe: (_, __, { pubsub }) => pubsub.asyncIterator(NEW_MESSAGE),
+    },
+
+    userJoined: {
+      subcribe: (_, __, { pubsub }) => pubsub.asyncIterator(USER_JOINED),
+    },
+    userLeaved: {
+      subcribe: (_, __, { pubsub }) => pubsub.asyncIterator(USER_LEAVED),
+    },
   },
 };
-
 module.exports = resolvers;

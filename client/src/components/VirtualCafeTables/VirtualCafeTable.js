@@ -12,53 +12,61 @@
 
 // export default VirtualCafeTable;
 
-import React from 'react';
-import TableActions from './TableActions';
-import './VirtualCafeTable.css';
-import { useStoreContext } from '../../utils/GlobalState';
-import { useMutation } from '@apollo/client';
-import { JOIN_TABLE } from '../../utils/mutations';
+import React from "react";
+import TableActions from "./TableActions";
+import "./VirtualCafeTable.css";
+import { useStoreContext } from "../../utils/GlobalState";
+import { useMutation } from "@apollo/client";
+import { JOIN_TABLE } from "../../utils/mutations";
+import { joinTable } from "../../utils/actions";
 
-
-
-const VirtualCafeTable = ({ table }) => {
-  const [joinTable, { error }] = useMutation(JOIN_TABLE);
-
-
+const VirtualCafeTable = ({ table, onUpdate }) => {
+  const [joinTable_, { error }] = useMutation(JOIN_TABLE);
+  const [state, dispatch] = useStoreContext();
 
   const setTaken = async (index, table) => {
     // joinTable(joinTable({ tableId: table._id, index }));
-    await joinTable({
+    //alert('im here');
+    await joinTable_({
       variables: {
         tableId: table._id,
-        index: index
-      }
-    })
-  }
+        index: index,
+      },
+    });
+    await dispatch(joinTable({ tableId: table._id, index }));
+    // await handleMessage(table);
+    if (onUpdate) {
+      return onUpdate();
+    }
+  };
 
   const getSeats = (table) => {
     let seats = new Array(table.capacity).fill(true).map((s, index) => {
       if (!table.seats || table.seats.length === 0) return true;
-      return false;
+      if (table.seats.find((i) => i.index === index)) return false;
+      return true;
     });
     return seats;
-  }
+  };
 
   return (
     <div className="virtual-cafe-table">
       {table.capacity > 0 && (
         <div className="table">
-          {
-            getSeats(table).map((isAvailable, index) => (
-              <div
-                key={index}
-                className={`seat ${isAvailable ? 'available' : 'taken'}`} onClick={() => setTaken(index, table)}
-                style={{
-                  transform: `translate(${Math.cos((2 * Math.PI / table.capacity) * index) * 75}px, ${Math.sin(
-                    (2 * Math.PI / table.capacity) * index,
-                  ) * 75}px)`,
-                }}></div>
-            ))}
+          {getSeats(table).map((isAvailable, index) => (
+            <div
+              key={index}
+              className={`seat ${isAvailable ? "available" : "taken"}`}
+              onClick={() => setTaken(index, table)}
+              style={{
+                transform: `translate(${
+                  Math.cos(((2 * Math.PI) / table.capacity) * index) * 75
+                }px, ${
+                  Math.sin(((2 * Math.PI) / table.capacity) * index) * 75
+                }px)`,
+              }}
+            ></div>
+          ))}
           <h3>{table.name}</h3>
         </div>
       )}

@@ -2,25 +2,37 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const virtualTableSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-        unique: true,
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  attendants: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-    description: {
-        type: String,
-        required: true,
-    },
-    attendants: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-        },
-    ],
-capacity: {
+  ],
+  capacity: {
+    type: Number,
+    required: true,
+  },
+  seats: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+      index: {
         type: Number,
-        required: true,
+        default: 0,
+      },
     },
+  ],
 });
 
 const VirtualTable = mongoose.model('VirtualTable', virtualTableSchema);
