@@ -16,7 +16,7 @@ db.once("open", async () => {
 
   const products = await Product.insertMany([
     {
-      name: "Alpacchino seed",
+      name: "Alpacchino",
       description:
         "An espresso-based coffee with whole milk, prepared with steamed milk foam and topped with cinnamon-chocolate powder.",
       image: "cappuccino.jpeg",
@@ -179,7 +179,7 @@ db.once("open", async () => {
       name: "Fresh Warm Croissantwich!",
       description:
         "Try a freshly baked croissant filled with delicious slices of meat and cheese, served warm and melted!",
-      image: "crossaintwich.jpg",
+      image: "croissantwich.jpg",
       category: categories[2]._id,
       price: 4.99,
       quantity: 300,

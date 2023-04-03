@@ -17,10 +17,6 @@ function ProductItem(item) {
 
   const { cart } = state;
 
-  useEffect(() => {
-    console.log("State", cart);
-  });
-
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
     
@@ -35,7 +31,7 @@ function ProductItem(item) {
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
     } else {
-      dispatch({
+      const result = dispatch({
         type: ADD_TO_CART,
         product: { ...item, purchaseQuantity: 1 },
       });
@@ -51,16 +47,13 @@ function ProductItem(item) {
           {/* <p className="text-center">{desc} </p> */}
         </div>
         <div className="row justify-content-center features"></div>
-        <div className="card px-1 py-1">
-          <Link to={`/products/${_id}`}></Link>
+        <div className="card px-1 py-1 products">
           <img src={`/images/${image}`} alt={name} />
           <p>{description}</p>
           <div>
-
             <div>
               {quantity} {pluralize("item", quantity)} in stock
             </div>
-
             <span>${price}</span>
           </div>
 
