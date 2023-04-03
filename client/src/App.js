@@ -52,7 +52,7 @@ function App() {
       <Router>
         <div>
           <StoreProvider>
-            <Nav name="CAFE DU LAIT" />
+            <Nav name="CAFE AU LAIT" />
             <Routes>
               <Route path="/success" element={<Success />} />
               <Route path="/cart" element={<Cart />} />
