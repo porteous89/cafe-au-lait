@@ -1,3 +1,4 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # Cafe Au Lait
 
 ## Description
@@ -48,19 +49,19 @@ THEN I can use the chat box and send messages.
 
 Landing Page
 
-<img src="client\public\images\Screenshot (53).png" width= 45%>
+<img src="client\public\images\Screenshot (53).png" width= 60%>
 
 Menu Section - Adding items
 
-<img src="client\public\images\Screenshot (54).png" width= 45%>
+<img src="client\public\images\Screenshot (54).png" width= 60%>
 
 Adding/Removing items from our Cart
 
-<img src="client\public\images\Screenshot (55).png" width= 45%>
+<img src="client\public\images\Screenshot (55).png" width= 60%>
 
 Virtual Cafe Tables showing chat feature
 
-<img src="client\public\images\Screenshot (56).png" width= 45%>
+<img src="client\public\images\Screenshot (56).png" width= 60%>
 
 
 ## Goal
