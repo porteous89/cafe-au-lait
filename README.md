@@ -50,15 +50,13 @@ Landing Page
 <img src="client\public\images\Screenshot (53).png" width= 45%>
 
 Projects Section
-<img src="src\images\projects-screenshot.png" width= 45%>
+<img src="client\public\images\Screenshot (54).png" width= 45%>
 
 Responsiveness
-<img src="src\images\showing-responsiveness.png" width= 45%>
+<img src="client\public\images\Screenshot (55).png" width= 45%>
 
-![Screenshot](client\public\images\Screenshot (53).png)
-![Screenshot](client\public\images\Screenshot (54).png)
-![Screenshot](client\public\images\Screenshot (55).png)
-![Screenshot](client\public\images\Screenshot (56).png)
+<img src="client\public\images\Screenshot (56).png" width= 45%>
+
 
 ## Goal
 - Use React for the front end.
