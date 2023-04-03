@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Container } from "reactstrap";
+import { Container, Card } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Cart from "../components/Cart";
 
 import "./home.css";
 import { useNavigate } from "react-router-dom";
@@ -19,9 +17,9 @@ const Home = ({ name }) => {
   };
 
   return (
-    <Container fluid className="home">
+    <Container fluid className="home-container">
       <div className="home">
-        <div className="welcome-screen">
+        <Card className="welcome-card">
           <h1>Welcome to Cafe Du Lait</h1>
           <p>A small French cafe off the water, in the heart of downtown.</p>
           <p>
@@ -31,8 +29,7 @@ const Home = ({ name }) => {
           <button onClick={handleClick} className="btn btn-primary">
             Order Now
           </button>
-        </div>
-        <Cart />
+        </Card>
       </div>
     </Container>
   );
