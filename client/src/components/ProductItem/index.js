@@ -63,7 +63,7 @@ function ProductItem(item) {
           />
           <p>{description}</p>
           <div>
-            <div>{quantity} {pluralize("item", quantity)} in stock</div>
+            {/* <div>{quantity} {pluralize("item", quantity)} in stock</div> */}
             <span>${price}</span>
           </div>
           
