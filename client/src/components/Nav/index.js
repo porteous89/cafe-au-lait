@@ -29,9 +29,6 @@ const Nav = ({ name, cart }) => {
   ]);
 
   const handleClick = (path) => {
-    if (path === "Cart") {
-      window.location = "/cart";
-    }
     setActiveLink(path);
   };
 
@@ -58,7 +55,7 @@ const Nav = ({ name, cart }) => {
                     className={`nav-link ${
                       activeLink === link.name ? "active" : ""
                     }`}
-                    to={link.name !== "Cart" && link.path}
+                    to={link.name !== "cart" && link.path}
                     onClick={() => handleClick(link.name)}
                   >
                     {link.name}
