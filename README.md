@@ -47,7 +47,7 @@ THEN I can use the chat box and send messages.
 ```
 ## Screen Shots
 
-####  anding Page
+#### Landing Page
 
 <img src="client\public\images\Screenshot (53).png" width= 60%>
 
