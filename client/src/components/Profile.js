@@ -54,6 +54,16 @@ function Profile() {
       },
     });
 
+    if (mutationResponse.data.updateUser) {
+      console.log("user updated", mutationResponse);
+      window.location.reload();
+
+      //let newUserData = { ...userData };
+      //newUserData.firstName = mutationResponse.data.updateUser.firstName;
+      //newUserData.lastName = mutationResponse.data.updateUser.lastName;
+      //newUserData.email = mutationResponse.data.updateUser.email;
+    }
+
     //firstName = mutationResponse.data.updateUser.firstName;
     //lastName = mutationResponse.data.updateUser.lastName;
     //email = mutationResponse.data.updateUser.email;
@@ -121,17 +131,19 @@ function Profile() {
         <div className="img-wrap">
           <img src="https://i.pravatar.cc/300" alt="" />
         </div>
-        <div className="profile-details">
-          <p>First Name: {userData.firstName}</p>
-          <p>Last Name: {userData.lastName}</p>
-          <p>Email: {userData.email}</p>
-          {userData.orders && userData.orders.length > 0 && (
-            <>
-              <p>{userData.orders[0].purchaseDate}</p>
-              <p>{userData.orders[0].products[0]?.name}</p>
-            </>
-          )}
-        </div>
+        {Object.keys(userData).length > 0 && (
+          <div className="profile-details">
+            <p>First Name: {userData.firstName}</p>
+            <p>Last Name: {userData.lastName}</p>
+            <p>Email: {userData.email}</p>
+            {userData.orders && userData.orders.length > 0 && (
+              <>
+                <p>{userData.orders[0].purchaseDate}</p>
+                <p>{userData.orders[0].products[0]?.name}</p>
+              </>
+            )}
+          </div>
+        )}
       </div>
 
       {showAlert && (
@@ -175,7 +187,7 @@ function Profile() {
               value={email}
             />
           </div>
-          <div className="flex-row space-between my-2">
+          {/* <div className="flex-row space-between my-2">
             <label htmlFor="lastName">Password:</label>
             <input
               placeholder="Password"
@@ -185,7 +197,7 @@ function Profile() {
               onChange={handleChange}
               value={password}
             />
-          </div>
+          </div> */}
 
           <div className="flex-row flex-end">
             <button type="submit">Submit</button>

@@ -55,7 +55,7 @@ const Cart = () => {
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach((item) => {
-      sum += item.price * item.purchaseQuantity;
+      sum += (item.price * item.purchaseQuantity) / 2;
     });
     return sum.toFixed(2);
   }
@@ -116,13 +116,16 @@ const Cart = () => {
 
             {/* Check to see if the user is logged in. If so render a button to check out */}
             {Auth.loggedIn() ? (
-              <button onClick={submitCheckout}>Checkout</button>
+              // <button onClick={submitCheckout}>Checkout</button>
+              <a href="https://buy.stripe.com/test_8wM8xVag392m9eE8wx">
+                Checkout
+              </a>
             ) : (
               <span>(log in to check out)</span>
             )}
           </div>
         </div>
-      ) : ( 
+      ) : (
         <h3>
           <span role="img" aria-label="shocked">
             😱

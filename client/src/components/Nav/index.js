@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 import cart from "../Cart";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Nav = ({ name, cart }) => {
   const slideLeft = () => {
@@ -34,6 +35,8 @@ const Nav = ({ name, cart }) => {
     setActiveLink(path);
   };
 
+  const { pathname } = useLocation();
+
   return (
     <div className="header-container">
       <nav className="navbar navbar-light navbar-expand-md sticky-top nav-bar">
@@ -50,7 +53,7 @@ const Nav = ({ name, cart }) => {
           <ul className="navbar-nav ns-auto">
             {links.map((link) => {
               return (
-                <li className="nav-item" key={link.name} >
+                <li className="nav-item" key={link.name}>
                   <Link
                     className={`nav-link ${
                       activeLink === link.name ? "active" : ""
@@ -66,7 +69,7 @@ const Nav = ({ name, cart }) => {
 
             {Auth.loggedIn() ? (
               <>
-                <li className="nav-item" >
+                <li className="nav-item">
                   <Link
                     onClick={() => handleClick("Order History")}
                     className={`nav-link ${
