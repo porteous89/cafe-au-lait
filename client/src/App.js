@@ -49,7 +49,6 @@ function App() {
         <Routes>
           <Route path="/success" element={<Success />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
@@ -59,6 +58,7 @@ function App() {
             <ItemList />
           </>} />
           <Route exact path="/cafe-tables" element={<CafeTables />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </StoreProvider>
     </div>

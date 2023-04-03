@@ -13,10 +13,9 @@ import "./style.css";
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Cart = () => {
+  console.log("Cart component rendered");
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
-  //debugger;
 
   // We check to see if there is a data object that exists, if so this means that a checkout session was returned from the backend
   // Then we should redirect to the checkout with a reference to our session id
@@ -33,10 +32,12 @@ const Cart = () => {
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise("cart", "get");
+      console.log("cart", cart);
       dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
     }
 
     if (!state.cart.length) {
+      console.log("got hre", state.cart.length);
       getCart();
     }
 
@@ -121,7 +122,7 @@ const Cart = () => {
             )}
           </div>
         </div>
-      ) : (
+      ) : ( 
         <h3>
           <span role="img" aria-label="shocked">
             😱

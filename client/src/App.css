@@ -36,3 +36,66 @@
     transform: rotate(360deg);
   }
 }
+
+.slide-img{
+  object-fit: cover;
+}
+
+.welcome-screen{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.welcome-screen h1{
+  font-size: 45px;
+}
+
+.welcome-screen p{
+font-size: 22px;
+}
+
+.auth-form > div{
+  display:  flex;
+  align-items: center;
+}
+
+.auth-form > div > label{
+  min-width: 100px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.features-boxed .products img{
+  max-height: 350px;
+}
+
+.features-boxed{
+  margin: 12px;
+}
+
+.features-boxed .container{
+  height: 100%;
+  margin: 0;
+}
+
+.img-wrap{
+  width: 200px;
+  height: 200px;
+  margin: 16px auto;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.img-wrap img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-details{
+  text-align: center;
+}
+
+.profile-details p{
+  margin-bottom: 0;
+}
