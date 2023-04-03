@@ -47,19 +47,19 @@ THEN I can use the chat box and send messages.
 ```
 ## Screen Shots
 
-# Landing Page
+### Landing Page
 
 <img src="client\public\images\Screenshot (53).png" width= 60%>
 
-# Menu Section - Adding items
+### Menu Section - Adding items
 
 <img src="client\public\images\Screenshot (54).png" width= 60%>
 
-# Adding/Removing items from our Cart
+### Adding/Removing items from our Cart
 
 <img src="client\public\images\Screenshot (55).png" width= 60%>
 
-# Virtual Cafe Tables showing chat feature
+### Virtual Cafe Tables showing chat feature
 
 <img src="client\public\images\Screenshot (56).png" width= 60%>
 
